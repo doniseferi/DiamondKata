@@ -1,0 +1,39 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.3.32922.545
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{C5ECD0F7-1657-44C8-94F1-C026B862A8CF}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{6219ECB9-6A37-46A3-A50E-014BD58F9383}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DiamondKata.Domain.UnitTests", "test\DiamondKata.Domain.UnitTests\DiamondKata.Domain.UnitTests.csproj", "{7E16C8DC-426E-4C10-8760-C4FE7165B552}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DiamondKata.Domain", "src\DiamondKata.Domain\DiamondKata.Domain\DiamondKata.Domain.csproj", "{38CC6472-C42E-4FCE-A14D-D19DA78DF547}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7E16C8DC-426E-4C10-8760-C4FE7165B552}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7E16C8DC-426E-4C10-8760-C4FE7165B552}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7E16C8DC-426E-4C10-8760-C4FE7165B552}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7E16C8DC-426E-4C10-8760-C4FE7165B552}.Release|Any CPU.Build.0 = Release|Any CPU
+		{38CC6472-C42E-4FCE-A14D-D19DA78DF547}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{38CC6472-C42E-4FCE-A14D-D19DA78DF547}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{38CC6472-C42E-4FCE-A14D-D19DA78DF547}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{38CC6472-C42E-4FCE-A14D-D19DA78DF547}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{7E16C8DC-426E-4C10-8760-C4FE7165B552} = {6219ECB9-6A37-46A3-A50E-014BD58F9383}
+		{38CC6472-C42E-4FCE-A14D-D19DA78DF547} = {C5ECD0F7-1657-44C8-94F1-C026B862A8CF}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A4E80C93-47C7-4DCE-888E-36E1796FCEE7}
+	EndGlobalSection
+EndGlobal
