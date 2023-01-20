@@ -14,7 +14,7 @@ public class DiamondUnitTests
     }
 
     [Test]
-    public void DoesNotThrowAnExceptionWhenAmAlphabeticalCharIsSupplied()
+    public void DoesNotThrowAnExceptionWhenAnAlphabeticalCharIsSupplied()
     {
         var alphabeticalChars = Enumerable.Range(0, char.MaxValue + 1)
             .Select(i => (char)i)
