@@ -1,26 +1,15 @@
-namespace DiamondKata.Domain.UnitTests;
+//using DiamondKata.Domain.ValueType;
 
-public class DiamondUnitTests
-{
-    [Test]
-    public void ThrowsAnExceptionWhenANonAlphabeticalCharIsSupplied()
-    {
-        var nonLetterChars = Enumerable.Range(0, char.MaxValue + 1)
-            .Select(i => (char) i)
-            .Where(c => !char.IsControl(c) && !char.IsLetter(c))
-            .ToList();
+//namespace DiamondKata.Domain.UnitTests;
 
-        nonLetterChars.ForEach(c => Assert.Throws<CharIsNotALetterException>(() => new Diamond(new Letter(c))));
-    }
+//public class DiamondUnitTests
+//{
 
-    [Test]
-    public void DoesNotThrowAnExceptionWhenAnAlphabeticalCharIsSupplied()
-    {
-        var alphabeticalChars = Enumerable.Range(0, char.MaxValue + 1)
-            .Select(i => (char)i)
-            .Where(c => char.IsLetter(c))
-            .ToList();
+//    [Test]
+//    public void DoesNotThrowAnExceptionWhenAnAlphabeticalCharIsSupplied()
+//    {
+//        var alphabeticalChars = GetAllCharOfType(EnglishLetterUnitTests.CharTypeEnum.EnglishChar);
 
-        alphabeticalChars.ForEach(c => Assert.DoesNotThrow(() => new Diamond(new Letter(c))));
-    }
-}
+//        alphabeticalChars.ForEach(c => Assert.DoesNotThrow(() => new DiamondRow(new EnglishChar(c))));
+//    }
+//}
