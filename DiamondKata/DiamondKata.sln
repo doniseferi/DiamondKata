@@ -7,9 +7,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{C5ECD0F7-165
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{6219ECB9-6A37-46A3-A50E-014BD58F9383}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DiamondKata.Domain.UnitTests", "test\DiamondKata.Domain.UnitTests\DiamondKata.Domain.UnitTests.csproj", "{7E16C8DC-426E-4C10-8760-C4FE7165B552}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DiamondKata.Domain.UnitTests", "test\DiamondKata.Domain.UnitTests\DiamondKata.Domain.UnitTests.csproj", "{7E16C8DC-426E-4C10-8760-C4FE7165B552}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DiamondKata.Domain", "src\DiamondKata.Domain\DiamondKata.Domain\DiamondKata.Domain.csproj", "{38CC6472-C42E-4FCE-A14D-D19DA78DF547}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DiamondKata.Domain", "src\DiamondKata.Domain\DiamondKata.Domain\DiamondKata.Domain.csproj", "{38CC6472-C42E-4FCE-A14D-D19DA78DF547}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

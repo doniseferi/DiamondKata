@@ -78,18 +78,13 @@ internal class Diamond
     {
         var sb = new StringBuilder();
 
-        // here starts the internal padding writing
         var internalPadding = WHITE__CalculateInternalPadding(letter);
 
-        //sb.Append(letter);
         for (var i = 0; i < internalPadding; i++)
         {
             sb.Append(seperator);
         }
 
-        //sb.Append(letter);
-
-        // here ends the internal padding writing
         return sb.ToString();
     }
 
