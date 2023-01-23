@@ -3,9 +3,9 @@ using LanguageExt;
 
 namespace DiamondKata.Domain.ValueType;
 
-internal sealed class Padding : NewType<Padding, char>
+internal sealed class PaddingChar : NewType<PaddingChar, char>
 {
-    public Padding(char value)
+    public PaddingChar(char value)
         : base(value)
     {
         if (char.IsControl(value))

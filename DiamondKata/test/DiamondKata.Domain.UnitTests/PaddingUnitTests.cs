@@ -13,7 +13,7 @@ public class PaddingUnitTests
             .Except(CharExtensions.GetAllPrintableChars())
             .ToList()
             .ForEach(c =>
-                Assert.Throws<CharIsNotAWrittenSymbolException>(() => new Padding(c)));
+                Assert.Throws<CharIsNotAWrittenSymbolException>(() => new PaddingChar(c)));
 
     [Test]
     public void DoesNotThrowWhenAPrintableCharIsUsed() =>
@@ -21,5 +21,5 @@ public class PaddingUnitTests
             .ToList()
             .ForEach(c =>
                 Assert.DoesNotThrow(
-                    () => new Padding(c)));
+                    () => new PaddingChar(c)));
 }
