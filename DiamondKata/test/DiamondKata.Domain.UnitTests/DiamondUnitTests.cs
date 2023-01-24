@@ -1,6 +1,6 @@
 using DiamondKata.Domain.ValueType;
-using ExternalPaddingChar = DiamondKata.Domain.ValueType.PaddingChar;
-using InternalPaddingChar = DiamondKata.Domain.ValueType.PaddingChar;
+using OuterPaddingChar = DiamondKata.Domain.ValueType.PaddingChar;
+using InnerPaddingChar = DiamondKata.Domain.ValueType.PaddingChar;
 
 namespace DiamondKata.Domain.UnitTests;
 
@@ -9,33 +9,33 @@ public class DiamondUnitTests
     [Test]
     public void FirstAndLastEnglishLetterInTheDiamondHasNoInternalPadding()
     {
-        var internalPadding = new InternalPaddingChar('-');
-        var externalPadding = new ExternalPaddingChar(' ');
+        var innerPadding = new InnerPaddingChar('-');
+        var outerPadding = new OuterPaddingChar(' ');
         var letter = new EnglishChar('Z');
-        
+
         var lines =
-            new Diamond(letter, internalPadding, externalPadding)
+            new Diamond(letter, outerPadding, innerPadding)
                 .Value
                 .Split(Environment.NewLine)
                 .ToList();
 
         Assert.That(
             lines.First(),
-            Does.Not.Contain(internalPadding.Value));
+            Does.Not.Contain(innerPadding.Value));
 
         Assert.That(lines.Last(),
-            Does.Not.Contain(internalPadding.Value));
+            Does.Not.Contain(innerPadding.Value));
     }
 
     [Test]
     public void FirstAndLastEnglishLetterInTheDiamondAreTheSame()
     {
-        var internalPadding = new InternalPaddingChar('-');
-        var externalPadding = new ExternalPaddingChar(' ');
+        var internalPadding = new InnerPaddingChar('-');
+        var outerPadding = new OuterPaddingChar(' ');
         var letterA = new EnglishChar('Z');
 
         var diamond =
-            new Diamond(letterA, internalPadding, externalPadding)
+            new Diamond(letterA, internalPadding, outerPadding)
                 .Value
                 .Split(Environment.NewLine)
                 .ToList();
@@ -46,14 +46,14 @@ public class DiamondUnitTests
     [Test]
     public async Task LeftAndRightSideExternalPaddingsAreEqualInLength()
     {
-        var internalPadding = new InternalPaddingChar('-');
-        var externalPadding = new ExternalPaddingChar(' ');
+        var internalPadding = new InnerPaddingChar('-');
+        var outerPadding = new OuterPaddingChar(' ');
         var letterA = new EnglishChar('Z');
 
-        var lines = 
-            new Diamond(letterA, internalPadding, externalPadding)
-            .Value
-            .Split(Environment.NewLine);
+        var lines =
+            new Diamond(letterA, internalPadding, outerPadding)
+                .Value
+                .Split(Environment.NewLine);
 
         Assert.That(lines.First(), Is.EqualTo(lines.Last()));
     }
@@ -61,11 +61,11 @@ public class DiamondUnitTests
     [Test]
     public void HeightIsEqualToWidth()
     {
-        var internalPadding = new InternalPaddingChar('-');
-        var externalPadding = new ExternalPaddingChar(' ');
+        var internalPadding = new InnerPaddingChar('-');
+        var outerPadding = new OuterPaddingChar(' ');
         var letterA = new EnglishChar('Z');
 
-        var diamond = new Diamond(letterA, internalPadding, externalPadding);
+        var diamond = new Diamond(letterA, internalPadding, outerPadding);
 
         var lines = diamond.Value.Split(Environment.NewLine);
         var height = lines.Length;
@@ -80,11 +80,11 @@ public class DiamondUnitTests
     [Test]
     public void EachLineHasTheSameNumberOfCharacters()
     {
-        var internalPadding = new InternalPaddingChar('-');
-        var externalPadding = new ExternalPaddingChar(' ');
+        var internalPadding = new InnerPaddingChar('-');
+        var outerPadding = new OuterPaddingChar(' ');
         var letterA = new EnglishChar('Z');
 
-        var diamond = new Diamond(letterA, internalPadding, externalPadding);
+        var diamond = new Diamond(letterA, internalPadding, outerPadding);
 
         var lines = diamond.Value.Split('\n');
         var length = lines
@@ -97,33 +97,33 @@ public class DiamondUnitTests
     [Test]
     public void DiamondsAreVerticallySymmetrical()
     {
-        var internalPadding = new InternalPaddingChar('-');
-        var externalPadding = new ExternalPaddingChar(' ');
+        var internalPadding = new InnerPaddingChar('-');
+        var outerPadding = new OuterPaddingChar(' ');
         var letterA = new EnglishChar('Z');
 
-        var diamond = new Diamond(letterA, internalPadding, externalPadding);
+        var diamond = new Diamond(letterA, internalPadding, outerPadding);
 
         var lines = diamond
             .Value
             .Split(Environment.NewLine)
             .ToList();
 
-            var midPoint = (lines.Count / 2);
-            var topHalf = lines.Take(midPoint + 1);
-            var bottomHalf = lines.Skip(midPoint);
-            CollectionAssert.AreEqual(
-                topHalf,
-                bottomHalf.Reverse());
+        var midPoint = (lines.Count / 2);
+        var topHalf = lines.Take(midPoint + 1);
+        var bottomHalf = lines.Skip(midPoint);
+        CollectionAssert.AreEqual(
+            topHalf,
+            bottomHalf.Reverse());
     }
 
     [Test]
     public void DiamondsAreHorizontallySymmetrical()
     {
-        var internalPadding = new InternalPaddingChar('-');
-        var externalPadding = new ExternalPaddingChar(' ');
+        var internalPadding = new InnerPaddingChar('-');
+        var outerPadding = new OuterPaddingChar(' ');
         var letterA = new EnglishChar('Z');
 
-        var diamond = new Diamond(letterA, internalPadding, externalPadding);
+        var diamond = new Diamond(letterA, internalPadding, outerPadding);
 
         var lines = diamond
             .Value
@@ -138,17 +138,16 @@ public class DiamondUnitTests
 
             CollectionAssert.AreEqual(leftHalf, rightHalf.Reverse());
         });
-
     }
 
     [Test]
     public void EnglishCharsAreInAscendingOrderFromTheTopHalfOfTheDiamond()
     {
-        var internalPadding = new InternalPaddingChar('-');
-        var externalPadding = new ExternalPaddingChar(' ');
+        var internalPadding = new InnerPaddingChar('-');
+        var outerPadding = new OuterPaddingChar(' ');
         var letterA = new EnglishChar('Z');
 
-        var diamond = new Diamond(letterA, internalPadding, externalPadding);
+        var diamond = new Diamond(letterA, internalPadding, outerPadding);
 
         var lines = diamond
             .Value
@@ -169,11 +168,11 @@ public class DiamondUnitTests
     [Test]
     public void EnglishCharsAreInDescendingOrderFromTheBottomHalfOfTheDiamond()
     {
-        var internalPadding = new InternalPaddingChar('-');
-        var externalPadding = new ExternalPaddingChar(' ');
+        var internalPadding = new InnerPaddingChar('-');
+        var outerPadding = new OuterPaddingChar(' ');
         var letterA = new EnglishChar('Z');
 
-        var diamond = new Diamond(letterA, internalPadding, externalPadding);
+        var diamond = new Diamond(letterA, internalPadding, outerPadding);
 
         var lines = diamond
             .Value

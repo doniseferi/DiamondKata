@@ -5,22 +5,22 @@
 
 namespace DiamondKata.Domain.ValueType;
 
-using InternalPaddingChar = PaddingChar;
-using ExternalPaddingChar = PaddingChar;
+using OuterPaddingChar = PaddingChar;
+using InnerPaddingChar = PaddingChar;
 using System.Text;
 using System.Collections.Generic;
 
 internal class Diamond
 {
-    public Diamond(EnglishChar englishChar, InternalPaddingChar internalPaddingChar,
-        ExternalPaddingChar externalPaddingChar)
+    public Diamond(EnglishChar englishChar, OuterPaddingChar outerPadding,
+        InnerPaddingChar innerPaddingChar)
     {
-        Value = Print(englishChar.Value, internalPaddingChar.Value, externalPaddingChar.Value);
+        Value = Print(englishChar.Value, outerPadding.Value, innerPaddingChar.Value);
     }
 
     public string Value { get; }
 
-    private string Print(char c, char innerPadding, char outerPadding)
+    private string Print(char c, char outerPadding, char innerPadding)
     {
         var sb = new StringBuilder();
         var d = new Dictionary<char, string>();
@@ -108,7 +108,7 @@ internal class Diamond
         return sb.ToString();
     }
 
-    private Func<char, int> GetAsciiValue = c => Convert.ToInt32(Encoding.ASCII.GetBytes(new[] { c })[0]);
+    private Func<char, int> GetAsciiValue = c => Convert.ToInt32(Encoding.ASCII.GetBytes(new[] {c})[0]);
 
 
     private int YELLOW__CalculatOuterPadding(char inputChar, char currentChar)
@@ -123,7 +123,7 @@ internal class Diamond
 
         return inputCharValue - rowCharValue;
     }
-    
+
     private int WHITE__CalculateInternalPadding(char c)
     {
         var charsNumericalValue = GetNumericalValue(c);
@@ -143,6 +143,6 @@ internal class Diamond
     private char GetFirstLowerLetter(int currentLettersNumericalValue)
     {
         var numericalValue = (65 + (currentLettersNumericalValue - 1));
-        return (char)numericalValue;
+        return (char) numericalValue;
     }
 }
