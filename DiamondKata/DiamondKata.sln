@@ -9,11 +9,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{6219ECB9-6
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DiamondKata.Domain.UnitTests", "test\DiamondKata.Domain.UnitTests\DiamondKata.Domain.UnitTests.csproj", "{7E16C8DC-426E-4C10-8760-C4FE7165B552}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DiamondKata.Domain", "src\DiamondKata.Domain\DiamondKata.Domain\DiamondKata.Domain.csproj", "{38CC6472-C42E-4FCE-A14D-D19DA78DF547}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DiamondKata.DomainService", "src\DiamondKata.Domain\DiamondKata.Domain\DiamondKata.DomainService.csproj", "{38CC6472-C42E-4FCE-A14D-D19DA78DF547}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DiamondKata.Console", "src\DiamondKata.Console\DiamondKata.Console.csproj", "{92945427-FC84-410E-B0FA-23CB33E3C160}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DiamondKata.Console", "src\DiamondKata.Console\DiamondKata.Console.csproj", "{92945427-FC84-410E-B0FA-23CB33E3C160}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DiamondKata.EndToEndTests", "test\DiamondKata.EndToEndTests\DiamondKata.EndToEndTests.csproj", "{CBFEA8DB-AD44-4888-8E8A-6DA133C32161}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DiamondKata.EndToEndTests", "test\DiamondKata.EndToEndTests\DiamondKata.EndToEndTests.csproj", "{CBFEA8DB-AD44-4888-8E8A-6DA133C32161}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

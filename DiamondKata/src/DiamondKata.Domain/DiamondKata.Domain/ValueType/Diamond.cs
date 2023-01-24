@@ -56,8 +56,7 @@ internal class Diamond
 
     private List<char> GetAllChars(char c)
     {
-        var l = new List<char>();
-        l.Add(c);
+        var l = new List<char> {c};
         for (var i = GetNumericalValue(c); i > 0; i--)
         {
             var s = GetFirstLowerLetter(i);

@@ -17,7 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\DiamondKata.Domain\DiamondKata.Domain\DiamondKata.Domain.csproj" />
+    <ProjectReference Include="..\..\src\DiamondKata.Domain\DiamondKata.Domain\DiamondKata.DomainService.csproj" />
   </ItemGroup>
 
 </Project>
