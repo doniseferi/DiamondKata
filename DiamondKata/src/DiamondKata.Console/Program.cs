@@ -5,6 +5,7 @@ using DiamondKata.Console.Extensions;
 using DiamondKata.Domain.Builders;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
 
 namespace DiamondKata.Console;
 
@@ -28,18 +29,21 @@ internal class Program
             });
     }
 
-    private static IHostBuilder CreateHostBuilder(CommandLineOptions commandLineOptions) => Host.CreateDefaultBuilder()
-        .ConfigureServices(
-            services =>
-            {
-                services.AddHostedService<Worker>()
-                    .AddSingleton(commandLineOptions)
-                    .AddSingleton<IDiamondQueryHandler, DiamondQueryHandler>()
-                    .AddSingleton<IRowGeneratorQueryHandler, RowGeneratorQueryHandler>()
-                    .AddSingleton<IOuterPaddingStringGenerator, OuterPaddingStringGenerator>()
-                    .AddSingleton<IOuterPaddingLengthQueryHandler, OuterPaddingLengthQueryHandler>()
-                    .AddSingleton<IInnerPaddingLengthQueryHandler, InnerPaddingLengthQueryHandler>()
-                    .AddSingleton<IInnerPaddingStringGenerator, InnerPaddingStringGenerator>()
-                    .AddSingleton<IGetLowerEnglishLettersQueryHandlers, GetLowerEnglishLettersQueryHandlers>();
-            });
+    private static IHostBuilder CreateHostBuilder(CommandLineOptions commandLineOptions)
+    {
+        return Host.CreateDefaultBuilder()
+            .ConfigureServices(
+                services =>
+                {
+                    services.AddHostedService<Worker>()
+                        .AddSingleton(commandLineOptions)
+                        .AddSingleton<IDiamondQueryHandler, DiamondQueryHandler>()
+                        .AddSingleton<IRowGeneratorQueryHandler, RowGeneratorQueryHandler>()
+                        .AddSingleton<IOuterPaddingStringGenerator, OuterPaddingStringGenerator>()
+                        .AddSingleton<IOuterPaddingLengthQueryHandler, OuterPaddingLengthQueryHandler>()
+                        .AddSingleton<IInnerPaddingLengthQueryHandler, InnerPaddingLengthQueryHandler>()
+                        .AddSingleton<IInnerPaddingStringGenerator, InnerPaddingStringGenerator>()
+                        .AddSingleton<IGetLowerEnglishLettersQueryHandlers, GetLowerEnglishLettersQueryHandlers>();
+                }).ConfigureLogging(logging => logging.ClearProviders());
+    }
 }
