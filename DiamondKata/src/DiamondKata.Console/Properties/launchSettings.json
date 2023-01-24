@@ -1,0 +1,7 @@
+{
+  "profiles": {
+    "DiamondKata.Console": {
+      "commandName": "Project"
+    }
+  }
+}

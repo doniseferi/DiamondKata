@@ -4,10 +4,11 @@ using TechTalk.SpecFlow;
 
 namespace DiamondKata.EndToEndTests.Steps;
 
-internal class DiamondSteps
+[Binding]
+class DiamondSteps
 {
     private readonly SystemUnderTestExecutionHandler _systemUnderTestExecutionHandler;
-    private string _resultFromConsole;
+    private ConsoleApplicationExecutionResult _resultFromConsole;
 
     public DiamondSteps(SystemUnderTestExecutionHandler systemUnderTestExecutionHandler)
     {
@@ -21,21 +22,30 @@ internal class DiamondSteps
     }
 
     [When(@"I provide a valid english character to the console")]
-    public void WhenIProvideAValidEnglishCharacterToTheConsole()
+    public async Task WhenIProvideAValidEnglishCharacterToTheConsole()
     {
+        _resultFromConsole = await GetApplicationResponseAsync(new[] {"f"});
     }
 
     [Then(@"a correctly formatted diamond is printed")]
     public void ThenACorrectlyFormattedDiamondIsPrinted()
     {
-        throw new PendingStepException();
+        Assert.That(_resultFromConsole.ConsoleOutput, Is.EqualTo(@"     A     
+    B-B    
+   C---C   
+  D-----D  
+ E-------E 
+F---------F
+ E-------E 
+  D-----D  
+   C---C   
+    B-B    
+     A     
+"));
+
+        Assert.That(_resultFromConsole.ResultCode, Is.EqualTo(0));
     }
 
-    //private async Task<List<ConsoleApplicationExecutionResult>> GetApplicationResponse(char englishChar, char outerPadding, char innerPadding) =>
-    //    (await Task.WhenAll(
-    //        englishChar
-    //            .Select(
-    //                async id => await _systemUnderTestExecutionHandler.ExecuteAsync(new[] { id }))))
-    //    .ToList();
-
+    private async Task<ConsoleApplicationExecutionResult> GetApplicationResponseAsync(string[] args) =>
+        await _systemUnderTestExecutionHandler.ExecuteAsync(args);
 }

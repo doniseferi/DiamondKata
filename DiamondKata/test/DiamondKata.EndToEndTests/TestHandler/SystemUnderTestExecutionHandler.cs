@@ -10,7 +10,9 @@ internal class SystemUnderTestExecutionHandler
 
     public SystemUnderTestExecutionHandler(string applicationPath)
     {
-        _applicationExePath = !string.IsNullOrWhiteSpace(applicationPath) ? applicationPath : throw new ArgumentNullException(nameof(applicationPath));
+        _applicationExePath = !string.IsNullOrWhiteSpace(applicationPath)
+            ? applicationPath
+            : throw new ArgumentNullException(nameof(applicationPath));
     }
 
     public async Task<ConsoleApplicationExecutionResult> ExecuteAsync(string[] args)

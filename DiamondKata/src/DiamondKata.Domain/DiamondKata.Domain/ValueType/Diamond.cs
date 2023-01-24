@@ -1,7 +1,7 @@
 ﻿using System.Runtime.CompilerServices;
 
 [assembly: InternalsVisibleTo("DiamondKata.Domain.UnitTests"),
-           InternalsVisibleTo("DiamondKata.Domain.UnitTests")]
+           InternalsVisibleTo("DiamondKata.Console")]
 
 namespace DiamondKata.Domain.ValueType;
 
