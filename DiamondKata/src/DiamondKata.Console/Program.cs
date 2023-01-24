@@ -1,11 +1,12 @@
 ﻿// See https://aka.ms/new-console-template for more information
 
 using CommandLine;
-using DiamondKata.Console;
 using DiamondKata.Console.Extensions;
 using DiamondKata.Domain.Builders;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+
+namespace DiamondKata.Console;
 
 internal class Program
 {
@@ -16,26 +17,29 @@ internal class Program
             {
                 if (!commandLineOptions.EnglishChar.IsAnEnglishLetter())
                 {
-                    Console.WriteLine("Please input an english letter.");
-                    Environment.ExitCode = (int) ExitCode.InvalidEnglishChar;
+                    System.Console.WriteLine("Please input an english letter.");
+                    Environment.ExitCode = (int)ExitCode.InvalidEnglishChar;
                 }
                 else
                 {
-                    using var host = CreateHostBuilder().Build();
+                    using var host = CreateHostBuilder(commandLineOptions).Build();
                     await host.RunAsync();
                 }
             });
     }
 
-    private static IHostBuilder CreateHostBuilder() => Host.CreateDefaultBuilder().ConfigureServices(
-        services =>
-            services.AddHostedService<Worker>()
-                .AddSingleton<IDiamondQueryHandler, DiamondQueryHandler>()
-                .AddSingleton<IRowGeneratorQueryHandler, RowGeneratorQueryHandler>()
-                .AddSingleton<IOuterPaddingStringGenerator, OuterPaddingStringGenerator>()
-                .AddSingleton<IOuterPaddingLengthQueryHandler, OuterPaddingLengthQueryHandler>()
-                .AddSingleton<IInnerPaddingStringGenerator, InnerPaddingStringGenerator>()
-                .AddSingleton<IInnerPaddingLengthQueryHandler, InnerPaddingLengthQueryHandler>()
-                .AddSingleton<IGetLowerEnglishLettersQueryHandlers, GetLowerEnglishLettersQueryHandlers>()
-    );
+    private static IHostBuilder CreateHostBuilder(CommandLineOptions commandLineOptions) => Host.CreateDefaultBuilder()
+        .ConfigureServices(
+            services =>
+            {
+                services.AddHostedService<Worker>()
+                    .AddSingleton(commandLineOptions)
+                    .AddSingleton<IDiamondQueryHandler, DiamondQueryHandler>()
+                    .AddSingleton<IRowGeneratorQueryHandler, RowGeneratorQueryHandler>()
+                    .AddSingleton<IOuterPaddingStringGenerator, OuterPaddingStringGenerator>()
+                    .AddSingleton<IOuterPaddingLengthQueryHandler, OuterPaddingLengthQueryHandler>()
+                    .AddSingleton<IInnerPaddingLengthQueryHandler, InnerPaddingLengthQueryHandler>()
+                    .AddSingleton<IInnerPaddingStringGenerator, InnerPaddingStringGenerator>()
+                    .AddSingleton<IGetLowerEnglishLettersQueryHandlers, GetLowerEnglishLettersQueryHandlers>();
+            });
 }

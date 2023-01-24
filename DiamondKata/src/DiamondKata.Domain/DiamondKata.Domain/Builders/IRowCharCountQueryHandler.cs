@@ -188,9 +188,9 @@ internal interface IInnerPaddingStringGenerator
 
 internal class InnerPaddingStringGenerator : IInnerPaddingStringGenerator
 {
-    private readonly InnerPaddingLengthQueryHandler _innerPaddingLengthQueryHandler;
+    private readonly IInnerPaddingLengthQueryHandler _innerPaddingLengthQueryHandler;
 
-    public InnerPaddingStringGenerator(InnerPaddingLengthQueryHandler innerPaddingLengthQueryHandler)
+    public InnerPaddingStringGenerator(IInnerPaddingLengthQueryHandler innerPaddingLengthQueryHandler)
     {
         _innerPaddingLengthQueryHandler = innerPaddingLengthQueryHandler ??
                                           throw new ArgumentNullException(nameof(innerPaddingLengthQueryHandler));
