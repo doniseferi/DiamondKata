@@ -2,7 +2,8 @@
 
 using CommandLine;
 using DiamondKata.Console.Extensions;
-using DiamondKata.Domain.Builders;
+using DiamondKata.DomainService.Generators;
+using DiamondKata.DomainService.QueryHandlers;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;

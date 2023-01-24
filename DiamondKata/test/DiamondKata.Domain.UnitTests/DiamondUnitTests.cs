@@ -1,7 +1,9 @@
 using DiamondKata.Domain.ValueType;
+using DiamondKata.DomainService.Generators;
 using OuterPaddingChar = DiamondKata.Domain.ValueType.PaddingChar;
 using InnerPaddingChar = DiamondKata.Domain.ValueType.PaddingChar;
-using DiamondKata.Domain.Builders;
+using DiamondKata.DomainService.QueryHandlers;
+using DiamondKata.DomainService.Requests;
 
 namespace DiamondKata.Domain.UnitTests;
 

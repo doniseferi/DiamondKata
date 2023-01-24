@@ -1,5 +1,6 @@
-﻿using DiamondKata.Domain.Builders;
-using DiamondKata.Domain.ValueType;
+﻿using DiamondKata.Domain.ValueType;
+using DiamondKata.DomainService.QueryHandlers;
+using DiamondKata.DomainService.Requests;
 using Microsoft.Extensions.Hosting;
 
 namespace DiamondKata.Console;
