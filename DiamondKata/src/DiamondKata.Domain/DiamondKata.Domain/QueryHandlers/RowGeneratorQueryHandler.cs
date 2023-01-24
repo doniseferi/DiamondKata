@@ -1,32 +1,32 @@
 ﻿using System.Text;
-using DiamondKata.DomainService.Generators;
+using DiamondKata.DomainService.Factories;
 using DiamondKata.DomainService.Requests;
 
 namespace DiamondKata.DomainService.QueryHandlers;
 
 internal class RowGeneratorQueryHandler : IRowGeneratorQueryHandler
 {
-    private readonly IOuterPaddingStringGenerator _outerPaddingStringGenerator;
-    private readonly IInnerPaddingStringGenerator _innerPaddingStringGenerator;
+    private readonly IOuterPaddingStringFactory _outerPaddingStringFactory;
+    private readonly IInnerPaddingStringFactory _innerPaddingStringFactory;
 
 
-    public RowGeneratorQueryHandler(IOuterPaddingStringGenerator outerPaddingStringGenerator,
-        IInnerPaddingStringGenerator innerPaddingStringGenerator)
+    public RowGeneratorQueryHandler(IOuterPaddingStringFactory outerPaddingStringFactory,
+        IInnerPaddingStringFactory innerPaddingStringFactory)
     {
-        _outerPaddingStringGenerator = outerPaddingStringGenerator ??
-                                       throw new ArgumentNullException(nameof(outerPaddingStringGenerator));
-        _innerPaddingStringGenerator = innerPaddingStringGenerator ??
-                                       throw new ArgumentNullException(nameof(innerPaddingStringGenerator));
+        _outerPaddingStringFactory = outerPaddingStringFactory ??
+                                       throw new ArgumentNullException(nameof(outerPaddingStringFactory));
+        _innerPaddingStringFactory = innerPaddingStringFactory ??
+                                       throw new ArgumentNullException(nameof(innerPaddingStringFactory));
     }
 
     public string Handle(RowQueryRequest request)
     {
         var outerPadding =
-            _outerPaddingStringGenerator.Generate(request.RequestChar, request.CurrentRowsChar,
+            _outerPaddingStringFactory.Create(request.RequestChar, request.CurrentRowsChar,
                 request.OuterPaddingChar);
 
         var innerPadding =
-            _innerPaddingStringGenerator.Generate(request.CurrentRowsChar, request.InnerPaddingChar);
+            _innerPaddingStringFactory.Create(request.CurrentRowsChar, request.InnerPaddingChar);
 
         var currentChar = request.CurrentRowsChar;
 

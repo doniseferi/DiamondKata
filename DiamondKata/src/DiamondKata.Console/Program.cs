@@ -2,7 +2,7 @@
 
 using CommandLine;
 using DiamondKata.Console.Extensions;
-using DiamondKata.DomainService.Generators;
+using DiamondKata.DomainService.Factories;
 using DiamondKata.DomainService.QueryHandlers;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -40,10 +40,10 @@ internal class Program
                         .AddSingleton(commandLineOptions)
                         .AddSingleton<IDiamondQueryHandler, DiamondQueryHandler>()
                         .AddSingleton<IRowGeneratorQueryHandler, RowGeneratorQueryHandler>()
-                        .AddSingleton<IOuterPaddingStringGenerator, OuterPaddingStringGenerator>()
+                        .AddSingleton<IOuterPaddingStringFactory, OuterPaddingStringFactory>()
                         .AddSingleton<IOuterPaddingLengthQueryHandler, OuterPaddingLengthQueryHandler>()
                         .AddSingleton<IInnerPaddingLengthQueryHandler, InnerPaddingLengthQueryHandler>()
-                        .AddSingleton<IInnerPaddingStringGenerator, InnerPaddingStringGenerator>()
+                        .AddSingleton<IInnerPaddingStringFactory, InnerPaddingStringFactory>()
                         .AddSingleton<IGetLowerEnglishLettersQueryHandlers, GetLowerEnglishLettersQueryHandlers>();
                 }).ConfigureLogging(logging => logging.ClearProviders());
     }

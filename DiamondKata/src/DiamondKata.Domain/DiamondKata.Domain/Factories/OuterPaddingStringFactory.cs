@@ -2,19 +2,19 @@
 using DiamondKata.Domain.ValueType;
 using DiamondKata.DomainService.QueryHandlers;
 
-namespace DiamondKata.DomainService.Generators;
+namespace DiamondKata.DomainService.Factories;
 
-internal class OuterPaddingStringGenerator : IOuterPaddingStringGenerator
+internal class OuterPaddingStringFactory : IOuterPaddingStringFactory
 {
     private readonly IOuterPaddingLengthQueryHandler _outerPaddingLengthQueryHandler;
 
-    public OuterPaddingStringGenerator(IOuterPaddingLengthQueryHandler outerPaddingLengthQueryHandler)
+    public OuterPaddingStringFactory(IOuterPaddingLengthQueryHandler outerPaddingLengthQueryHandler)
     {
         _outerPaddingLengthQueryHandler = outerPaddingLengthQueryHandler ??
                                           throw new ArgumentNullException(nameof(outerPaddingLengthQueryHandler));
     }
 
-    public string Generate(EnglishChar requestChar, EnglishChar currentRowsChar, PaddingChar outerPaddingChar)
+    public string Create(EnglishChar requestChar, EnglishChar currentRowsChar, PaddingChar outerPaddingChar)
     {
         if (requestChar == null)
             throw new ArgumentNullException(nameof(requestChar));

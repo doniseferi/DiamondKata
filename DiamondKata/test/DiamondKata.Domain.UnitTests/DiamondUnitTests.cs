@@ -1,5 +1,5 @@
 using DiamondKata.Domain.ValueType;
-using DiamondKata.DomainService.Generators;
+using DiamondKata.DomainService.Factories;
 using OuterPaddingChar = DiamondKata.Domain.ValueType.PaddingChar;
 using InnerPaddingChar = DiamondKata.Domain.ValueType.PaddingChar;
 using DiamondKata.DomainService.QueryHandlers;
@@ -11,9 +11,9 @@ public class DiamondUnitTests
 {
     private IDiamondQueryHandler GetSystemUnderTest() => new DiamondQueryHandler(
         new RowGeneratorQueryHandler(
-            new OuterPaddingStringGenerator(
+            new OuterPaddingStringFactory(
                 new OuterPaddingLengthQueryHandler()),
-            new InnerPaddingStringGenerator(
+            new InnerPaddingStringFactory(
                 new InnerPaddingLengthQueryHandler())),
         new GetLowerEnglishLettersQueryHandlers());
 
