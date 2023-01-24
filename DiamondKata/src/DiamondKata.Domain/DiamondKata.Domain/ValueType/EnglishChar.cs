@@ -1,6 +1,10 @@
 ﻿using DiamondKata.Domain.Exception;
 using LanguageExt;
 using System.Text;
+using System.Runtime.CompilerServices;
+
+[assembly: InternalsVisibleTo("DiamondKata.Domain.UnitTests"),
+           InternalsVisibleTo("DiamondKata.Console")]
 
 namespace DiamondKata.Domain.ValueType;
 
@@ -25,12 +29,6 @@ internal sealed class EnglishChar : NewType<EnglishChar, char>
     {
         var asciiValueForUpperCaseA = 65;
         return GetAsciiValue() - asciiValueForUpperCaseA;
-    }
-
-    public EnglishChar GetEnglishCharBefore()
-    {
-        var numericalValue = (65 + (GetNumericalValue() - 1));
-        return new EnglishChar((char) numericalValue);
     }
 
     private int GetAsciiValue() => Convert.ToInt32(Encoding.ASCII.GetBytes(new[] {Value})[0]);

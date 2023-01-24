@@ -1,5 +1,4 @@
 ﻿using DiamondKata.Domain.ValueType;
-using System;
 using System.Text;
 
 namespace DiamondKata.Domain.Builders;

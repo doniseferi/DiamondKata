@@ -3,25 +3,39 @@
 using CommandLine;
 using DiamondKata.Console;
 using DiamondKata.Console.Extensions;
-using DiamondKata.Domain.Exception;
-using DiamondKata.Domain.ValueType;
+using DiamondKata.Domain.Builders;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 
-await Parser.Default.ParseArguments<CommandLineOptions>(args)
-    .WithParsedAsync(x =>
+internal class Program
+{
+    static async Task Main(string[] args)
     {
-        if (!x.EnglishChar.IsAnEnglishLetter())
-            Environment.ExitCode = (int)ExitCode.InvalidEnglishChar;
+        await Parser.Default.ParseArguments<CommandLineOptions>(args)
+            .WithParsedAsync(async commandLineOptions =>
+            {
+                if (!commandLineOptions.EnglishChar.IsAnEnglishLetter())
+                {
+                    Console.WriteLine("Please input an english letter.");
+                    Environment.ExitCode = (int) ExitCode.InvalidEnglishChar;
+                }
+                else
+                {
+                    using var host = CreateHostBuilder().Build();
+                    await host.RunAsync();
+                }
+            });
+    }
 
-        try
-        {
-            Console.WriteLine(new Diamond(new EnglishChar(char.ToUpperInvariant(x.EnglishChar)),
-                new PaddingChar(' '),
-                new PaddingChar('-')).Value);
-        }
-        catch (CharIsNotAnEnglishLetterException)
-        {
-            Environment.ExitCode = (int)ExitCode.InvalidEnglishChar;
-        }
-
-        return Task.CompletedTask;
-    });
+    private static IHostBuilder CreateHostBuilder() => Host.CreateDefaultBuilder().ConfigureServices(
+        services =>
+            services.AddHostedService<Worker>()
+                .AddSingleton<IDiamondQueryHandler, DiamondQueryHandler>()
+                .AddSingleton<IRowGeneratorQueryHandler, RowGeneratorQueryHandler>()
+                .AddSingleton<IOuterPaddingStringGenerator, OuterPaddingStringGenerator>()
+                .AddSingleton<IOuterPaddingLengthQueryHandler, OuterPaddingLengthQueryHandler>()
+                .AddSingleton<IInnerPaddingStringGenerator, InnerPaddingStringGenerator>()
+                .AddSingleton<IInnerPaddingLengthQueryHandler, InnerPaddingLengthQueryHandler>()
+                .AddSingleton<IGetLowerEnglishLettersQueryHandlers, GetLowerEnglishLettersQueryHandlers>()
+    );
+}
