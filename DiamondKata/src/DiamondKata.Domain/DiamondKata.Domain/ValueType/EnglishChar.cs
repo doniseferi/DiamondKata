@@ -1,8 +1,5 @@
-﻿using System.Runtime.CompilerServices;
-using DiamondKata.Domain.Exception;
+﻿using DiamondKata.Domain.Exception;
 using LanguageExt;
-
-[assembly: InternalsVisibleTo("DiamondKata.Domain.UnitTests")]
 
 namespace DiamondKata.Domain.ValueType;
 

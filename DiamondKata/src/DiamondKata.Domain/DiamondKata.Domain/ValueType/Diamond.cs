@@ -1,4 +1,9 @@
-﻿namespace DiamondKata.Domain.ValueType;
+﻿using System.Runtime.CompilerServices;
+
+[assembly: InternalsVisibleTo("DiamondKata.Domain.UnitTests"),
+           InternalsVisibleTo("DiamondKata.Domain.UnitTests")]
+
+namespace DiamondKata.Domain.ValueType;
 
 using InternalPaddingChar = PaddingChar;
 using ExternalPaddingChar = PaddingChar;
@@ -7,7 +12,6 @@ using System.Collections.Generic;
 
 internal class Diamond
 {
-
     public Diamond(EnglishChar englishChar, InternalPaddingChar internalPaddingChar,
         ExternalPaddingChar externalPaddingChar)
     {
@@ -24,8 +28,9 @@ internal class Diamond
         for (var i = chars.Count; i > 0; i--)
         {
             var @char = chars[i - 1];
-            d.Add(@char, GenerateRow(@char, innerPadding, outerPadding,c));
+            d.Add(@char, GenerateRow(@char, innerPadding, outerPadding, c));
         }
+
         for (int index = 0; index < d.Count; index++)
         {
             var item = d.ElementAt(index);
@@ -33,35 +38,37 @@ internal class Diamond
             sb.Append(itemValue);
             sb.Append(Environment.NewLine);
         }
-        for (int index = d.Count -1; index > 0; index--)
+
+        for (int index = d.Count - 1; index > 0; index--)
         {
-            var item = d.ElementAt(index -1);
+            var item = d.ElementAt(index - 1);
             var itemValue = item.Value;
             sb.Append(itemValue);
-            
+
             if (index == 1)
                 continue;
-            
+
             sb.Append(Environment.NewLine);
         }
+
         return sb.ToString();
     }
 
-    private  List<char> GetAllChars(char c)
+    private List<char> GetAllChars(char c)
     {
         var l = new List<char>();
         l.Add(c);
-        for (var i = GetNumbericalValue(c); i > 0; i--)
+        for (var i = GetNumericalValue(c); i > 0; i--)
         {
             var s = GetFirstLowerLetter(i);
             l.Add(s);
         }
+
         return l;
     }
 
-    private  string GenerateRow(char currentLetter, char innerPadding, char outerPadding, char lastLetter)
+    private string GenerateRow(char currentLetter, char innerPadding, char outerPadding, char lastLetter)
     {
-
         var sb = new StringBuilder();
         sb.Append(AddOuterPadding(currentLetter, outerPadding, lastLetter));
         sb.Append(currentLetter);
@@ -70,11 +77,12 @@ internal class Diamond
         {
             sb.Append(currentLetter);
         }
+
         sb.Append(AddOuterPadding(currentLetter, outerPadding, lastLetter));
         return sb.ToString();
     }
 
-    private  string AddInternalPadding(char letter, char seperator)
+    private string AddInternalPadding(char letter, char seperator)
     {
         var sb = new StringBuilder();
 
@@ -88,7 +96,7 @@ internal class Diamond
         return sb.ToString();
     }
 
-    private  string AddOuterPadding(char previousChar, char seperator, char letter)
+    private string AddOuterPadding(char previousChar, char seperator, char letter)
     {
         var sb = new StringBuilder();
         var outerPadding = YELLOW__CalculatOuterPadding(letter, previousChar) / 2;
@@ -98,52 +106,43 @@ internal class Diamond
         }
 
         return sb.ToString();
-
     }
 
-    private  Func<char, int> GetAsciiValue = c => Convert.ToInt32(Encoding.ASCII.GetBytes(new[] { c })[0]);
+    private Func<char, int> GetAsciiValue = c => Convert.ToInt32(Encoding.ASCII.GetBytes(new[] { c })[0]);
 
 
-    private  int YELLOW__CalculatOuterPadding(char inputChar, char currentChar)
+    private int YELLOW__CalculatOuterPadding(char inputChar, char currentChar)
     {
-        var charsNumbericalValue = GetNumbericalValue(inputChar);
+        var charsNumbericalValue = GetNumericalValue(inputChar);
 
         var inputCharValue = (charsNumbericalValue * 2) + 1;
 
-        var rowNumericValue = GetNumbericalValue(currentChar);
+        var rowNumericValue = GetNumericalValue(currentChar);
 
         var rowCharValue = (rowNumericValue * 2) + 1;
 
         return inputCharValue - rowCharValue;
     }
-
-    private  int BLUE__CalculateColumnWidth(char c)
+    
+    private int WHITE__CalculateInternalPadding(char c)
     {
-        var charsNumbericalValue = GetNumbericalValue(c);
-
-        return (charsNumbericalValue * 2) + 1;
-    }
-
-    private  int WHITE__CalculateInternalPadding(char c)
-    {
-        var charsNumericalValue = GetNumbericalValue(c);
+        var charsNumericalValue = GetNumericalValue(c);
         var value = (charsNumericalValue * 2) - 1;
         return value < 0
-        ? 0
-        : value;
+            ? 0
+            : value;
     }
 
-    private  int GetNumbericalValue(char c)
+    private int GetNumericalValue(char c)
     {
         var asciiValueForUpperCaseA = 65;
         var val = GetAsciiValue(char.ToUpper(c)) - asciiValueForUpperCaseA;
         return val;
     }
 
-    private  char GetFirstLowerLetter(int currentLettersNumericalValue)
+    private char GetFirstLowerLetter(int currentLettersNumericalValue)
     {
         var numericalValue = (65 + (currentLettersNumericalValue - 1));
         return (char)numericalValue;
     }
-
 }

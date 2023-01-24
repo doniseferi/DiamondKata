@@ -11,6 +11,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DiamondKata.Domain.UnitTest
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DiamondKata.Domain", "src\DiamondKata.Domain\DiamondKata.Domain\DiamondKata.Domain.csproj", "{38CC6472-C42E-4FCE-A14D-D19DA78DF547}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DiamondKata.Console", "src\DiamondKata.Console\DiamondKata.Console.csproj", "{92945427-FC84-410E-B0FA-23CB33E3C160}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DiamondKata.EndToEndTests", "test\DiamondKata.EndToEndTests\DiamondKata.EndToEndTests.csproj", "{CBFEA8DB-AD44-4888-8E8A-6DA133C32161}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -25,6 +29,14 @@ Global
 		{38CC6472-C42E-4FCE-A14D-D19DA78DF547}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{38CC6472-C42E-4FCE-A14D-D19DA78DF547}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{38CC6472-C42E-4FCE-A14D-D19DA78DF547}.Release|Any CPU.Build.0 = Release|Any CPU
+		{92945427-FC84-410E-B0FA-23CB33E3C160}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{92945427-FC84-410E-B0FA-23CB33E3C160}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{92945427-FC84-410E-B0FA-23CB33E3C160}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{92945427-FC84-410E-B0FA-23CB33E3C160}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CBFEA8DB-AD44-4888-8E8A-6DA133C32161}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CBFEA8DB-AD44-4888-8E8A-6DA133C32161}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CBFEA8DB-AD44-4888-8E8A-6DA133C32161}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CBFEA8DB-AD44-4888-8E8A-6DA133C32161}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -32,6 +44,8 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{7E16C8DC-426E-4C10-8760-C4FE7165B552} = {6219ECB9-6A37-46A3-A50E-014BD58F9383}
 		{38CC6472-C42E-4FCE-A14D-D19DA78DF547} = {C5ECD0F7-1657-44C8-94F1-C026B862A8CF}
+		{92945427-FC84-410E-B0FA-23CB33E3C160} = {C5ECD0F7-1657-44C8-94F1-C026B862A8CF}
+		{CBFEA8DB-AD44-4888-8E8A-6DA133C32161} = {6219ECB9-6A37-46A3-A50E-014BD58F9383}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {A4E80C93-47C7-4DCE-888E-36E1796FCEE7}
