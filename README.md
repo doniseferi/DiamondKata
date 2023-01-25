@@ -1,6 +1,6 @@
 # Diamond Kata Console Application
 
-A console application that when given an english character will print a diamond using that english character as the midpoint of that diamond. This is an implementation of [the diamond kata](https://github.com/davidwhitney/CodeDojos/tree/master/Diamond%20Kata).
+A console application that when given an english character will print a diamond using the english character as the diamond midpoint. This is an implementation of [the diamond kata](https://github.com/davidwhitney/CodeDojos/tree/master/Diamond%20Kata).
 
 ___
 
