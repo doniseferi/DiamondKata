@@ -15,7 +15,7 @@ To build the solution via the .NET CLI run:
 `dotnet build .\DiamondKata.sln`
 
 _Example:_
-<img src="./assets/Build.png?sanitize=true" />
+<img src="https://raw.githubusercontent.com/doniseferi/DiamondKata/master/assets/Build.png?token=GHSAT0AAAAAAB5V2VGVHVQZRIUJELZLZ77EY6RSFSQ" />
 
 ___
 
@@ -24,7 +24,7 @@ ___
 `dotnet run --project .\src\DiamondKata.Console\DiamondKata.Console.csproj u` or via the executable `.\src\DiamondKata.Console\bin\Debug\net6.0\DiamondKata.Console.exe u`
 
 _Example:_
-<img src="./assets/Run.png?sanitize=true" />
+<img src="https://raw.githubusercontent.com/doniseferi/DiamondKata/master/assets/Run.png?token=GHSAT0AAAAAAB5V2VGU5QFFUGIRSP3OD2H4Y6RSGQQ" />
 
 Example output:
 >           A
@@ -44,11 +44,11 @@ Via the .NET cli:
 
 _Example:_
 
-<img src="./assets/EndToEndTests.png?sanitize=true" />
+<img src="https://raw.githubusercontent.com/doniseferi/DiamondKata/master/assets/EndToEndTests.png?token=GHSAT0AAAAAAB5V2VGV2DFV3ELD6PM4JLRWY6RSHPA" />
 
 
 `dotnet test .\test\DiamondKata.Domain.UnitTests\DiamondKata.Domain.UnitTests.csproj`
 
 _Example:_
 
-<img src="./assets/UnitTests.png?sanitize=true" />
+<img src="https://raw.githubusercontent.com/doniseferi/DiamondKata/master/assets/UnitTests.png?token=GHSAT0AAAAAAB5V2VGVZ57LDRN3KSJ4EQ7YY6RSIBQ" />
