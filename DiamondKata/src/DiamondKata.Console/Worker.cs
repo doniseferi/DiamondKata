@@ -39,7 +39,7 @@ internal class Worker : IHostedService
         }
         catch (Exception)
         {
-            Environment.ExitCode = (int)ExitCode.UnexpectedError;
+            Environment.ExitCode = (int) ExitCode.UnexpectedError;
         }
         finally
         {

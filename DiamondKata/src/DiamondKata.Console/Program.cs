@@ -20,7 +20,7 @@ internal class Program
                 if (!commandLineOptions.EnglishChar.IsAnEnglishLetter())
                 {
                     System.Console.WriteLine("Please input an english letter.");
-                    Environment.ExitCode = (int)ExitCode.InvalidEnglishChar;
+                    Environment.ExitCode = (int) ExitCode.InvalidEnglishChar;
                 }
                 else
                 {

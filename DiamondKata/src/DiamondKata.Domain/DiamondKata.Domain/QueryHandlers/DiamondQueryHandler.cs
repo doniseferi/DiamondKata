@@ -25,7 +25,6 @@ internal class DiamondQueryHandler : IDiamondQueryHandler
         if (request == null)
             throw new ArgumentNullException(nameof(request));
 
-
         var rows = GenerateOutputPerChar(request);
 
         return new StringBuilder()
@@ -44,7 +43,6 @@ internal class DiamondQueryHandler : IDiamondQueryHandler
                         .Select(x => x.Value)))
             .ToString();
     }
-
 
     private Dictionary<EnglishChar, string> GenerateOutputPerChar(DiamondRequest request)
         => _getLowerEnglishLettersQueryHandlers

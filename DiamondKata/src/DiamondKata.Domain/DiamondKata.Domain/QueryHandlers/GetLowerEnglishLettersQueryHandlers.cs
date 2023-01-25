@@ -22,7 +22,7 @@ internal class GetLowerEnglishLettersQueryHandlers : IGetLowerEnglishLettersQuer
         return englishLetterAccum;
     }
 
-    private EnglishChar GetCharPriorTo(int currentCharsNumericalValue)
+    private static EnglishChar GetCharPriorTo(int currentCharsNumericalValue)
     {
         var previousCharsAsciiValue = AsciiValueForUpperCaseA + (currentCharsNumericalValue - 1);
         return new EnglishChar((char)previousCharsAsciiValue);

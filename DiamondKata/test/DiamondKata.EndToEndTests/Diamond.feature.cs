@@ -102,6 +102,49 @@ this.ScenarioInitialize(scenarioInfo);
             }
             this.ScenarioCleanup();
         }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("The application exits with a non-zero code on invalid input")]
+        public void TheApplicationExitsWithANon_ZeroCodeOnInvalidInput()
+        {
+            string[] tagsOfScenario = ((string[])(null));
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("The application exits with a non-zero code on invalid input", null, tagsOfScenario, argumentsOfScenario, featureTags);
+#line 8
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+                TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
+                            "Invalid Char"});
+                table1.AddRow(new string[] {
+                            "@"});
+                table1.AddRow(new string[] {
+                            "1"});
+                table1.AddRow(new string[] {
+                            "ẞ"});
+                table1.AddRow(new string[] {
+                            "Ë"});
+#line 9
+ testRunner.Given("an invalid english character is specified:", ((string)(null)), table1, "Given ");
+#line hidden
+#line 15
+ testRunner.When("The input is passed into the application", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 16
+ testRunner.Then("the application should exit with a non-zero System Error code", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+#line 17
+ testRunner.And("the user is presented with a human readable message", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
     }
 }
 #pragma warning restore
