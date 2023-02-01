@@ -1,33 +1,35 @@
 ﻿using System.Runtime.CompilerServices;
 using System.Text;
 using DiamondKata.Domain.Exception;
-using LanguageExt;
 
 [assembly: InternalsVisibleTo("DiamondKata.Domain.UnitTests"),
            InternalsVisibleTo("DiamondKata.Console")]
 
 namespace DiamondKata.DomainService.ValueType;
 
-internal sealed class EnglishChar : NewType<EnglishChar, char>
+internal sealed class EnglishChar
 {
-    public EnglishChar(char value) : base(char.ToUpperInvariant(value))
+    public EnglishChar(char value)
     {
+
         bool IsAnEnglishLetter(char c) =>
             Enumerable.Range('A', 26)
                 .Select(x => (char) x)
-                .Concat(
-                    Enumerable.Range('a', 26)
-                        .Select(x => (char) x))
-                .ToList()
                 .Contains(c);
+        
+        var @char = char.ToUpperInvariant(value);
 
-        if (!IsAnEnglishLetter(value))
-            throw new CharIsNotAnEnglishLetterException(value);
+        if (!IsAnEnglishLetter(@char))
+            throw new CharIsNotAnEnglishLetterException(@char);
+
+        Value = @char;
     }
+
+    public char Value { get; }
 
     public int GetNumericalValue()
     {
-        var asciiValueForUpperCaseA = 65;
+        const int asciiValueForUpperCaseA = 65;
         return GetAsciiValue() - asciiValueForUpperCaseA;
     }
 

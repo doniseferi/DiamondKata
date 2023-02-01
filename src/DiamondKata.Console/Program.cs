@@ -7,6 +7,7 @@ using DiamondKata.DomainService.QueryHandlers;
 using DiamondKata.DomainService.Requests;
 using DiamondKata.DomainService.ValueType;
 using Microsoft.Extensions.DependencyInjection;
+using static System.Console;
 
 namespace DiamondKata.Console;
 
@@ -21,7 +22,7 @@ internal class Program
             {
                 if (!commandLineOptions.EnglishChar.IsAnEnglishLetter())
                 {
-                    System.Console.WriteLine("Please input an english letter.");
+                    WriteLine("Please input an english letter.");
                 }
                 else
                 {
@@ -30,7 +31,7 @@ internal class Program
                             .BuildServiceProvider()
                             .GetService<IDiamondQueryHandler>();
 
-                    System.Console.WriteLine(
+                    WriteLine(
                         diamondQueryHandler
                             .Handle(new DiamondRequest(
                                 inputChar: new EnglishChar(commandLineOptions.EnglishChar))));

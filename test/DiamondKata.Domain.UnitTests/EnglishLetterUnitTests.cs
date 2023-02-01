@@ -14,11 +14,15 @@ public class EnglishLetterUnitTests
                 Assert.DoesNotThrow(() => new EnglishChar(c)));
 
     [Test]
-    public void ThrowsAnExceptionWhenANonEnglishCharIsSupplied() =>
-        CharExtensions.GetAllPrintableChars()
-            .Except(CharExtensions.GetAllEnglishChars())
-            .ToList()
+    public void ThrowsAnExceptionWhenANonEnglishCharIsSupplied()
+    {
+        
+        var chars = CharExtensions.GetAllAsciiChars().Except(CharExtensions.GetAllEnglishChars())
+            .ToList();
+
+            chars
             .ForEach(c =>
                 Assert.Throws<CharIsNotAnEnglishLetterException>(
                     () => new EnglishChar(c)));
+    }
 }
