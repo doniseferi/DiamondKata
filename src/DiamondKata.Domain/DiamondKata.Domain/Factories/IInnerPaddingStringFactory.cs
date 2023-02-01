@@ -1,8 +1,8 @@
-﻿using DiamondKata.Domain.ValueType;
+﻿using DiamondKata.DomainService.ValueType;
 
 namespace DiamondKata.DomainService.Factories;
 
 internal interface IInnerPaddingStringFactory
 {
-    string Create(EnglishChar @char, PaddingChar innerPaddingChar);
+    string Create(EnglishChar @char);
 }

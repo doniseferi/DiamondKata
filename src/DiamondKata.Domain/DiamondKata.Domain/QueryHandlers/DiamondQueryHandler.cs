@@ -1,6 +1,6 @@
 ﻿using System.Text;
-using DiamondKata.Domain.ValueType;
 using DiamondKata.DomainService.Requests;
+using DiamondKata.DomainService.ValueType;
 
 namespace DiamondKata.DomainService.QueryHandlers;
 
@@ -53,9 +53,7 @@ internal class DiamondQueryHandler : IDiamondQueryHandler
                 Value = _rowGeneratorQueryHandler.Handle(
                     new RowQueryRequest(
                         request.RequestChar,
-                        currentChar,
-                        request.OuterPaddingChar,
-                        request.InnerPaddingChar))
+                        currentChar))
             })
             .ToDictionary(t => t.Key, t => t.Value);
 }

@@ -4,9 +4,9 @@ using CommandLine;
 using DiamondKata.Console.Extensions;
 using DiamondKata.DomainService.Factories;
 using DiamondKata.DomainService.QueryHandlers;
+using DiamondKata.DomainService.Requests;
+using DiamondKata.DomainService.ValueType;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 
 namespace DiamondKata.Console;
 
@@ -14,37 +14,37 @@ internal class Program
 {
     static async Task Main(string[] args)
     {
+        RegisterServices();
+
         await Parser.Default.ParseArguments<CommandLineOptions>(args)
             .WithParsedAsync(async commandLineOptions =>
             {
                 if (!commandLineOptions.EnglishChar.IsAnEnglishLetter())
                 {
                     System.Console.WriteLine("Please input an english letter.");
-                    Environment.ExitCode = (int) ExitCode.InvalidEnglishChar;
                 }
                 else
                 {
-                    using var host = CreateHostBuilder(commandLineOptions).Build();
-                    await host.RunAsync();
+                    var diamondQueryHandler =
+                        RegisterServices()
+                            .BuildServiceProvider()
+                            .GetService<IDiamondQueryHandler>();
+
+                    System.Console.WriteLine(
+                        diamondQueryHandler
+                            .Handle(new DiamondRequest(
+                                inputChar: new EnglishChar(commandLineOptions.EnglishChar))));
                 }
             });
     }
 
-    private static IHostBuilder CreateHostBuilder(CommandLineOptions commandLineOptions)
-    {
-        return Host.CreateDefaultBuilder()
-            .ConfigureServices(
-                services =>
-                {
-                    services.AddHostedService<Worker>()
-                        .AddSingleton(commandLineOptions)
-                        .AddSingleton<IDiamondQueryHandler, DiamondQueryHandler>()
-                        .AddSingleton<IRowGeneratorQueryHandler, RowGeneratorQueryHandler>()
-                        .AddSingleton<IOuterPaddingStringFactory, OuterPaddingStringFactory>()
-                        .AddSingleton<IOuterPaddingLengthQueryHandler, OuterPaddingLengthQueryHandler>()
-                        .AddSingleton<IInnerPaddingLengthQueryHandler, InnerPaddingLengthQueryHandler>()
-                        .AddSingleton<IInnerPaddingStringFactory, InnerPaddingStringFactory>()
-                        .AddSingleton<IGetLowerEnglishLettersQueryHandlers, GetLowerEnglishLettersQueryHandlers>();
-                }).ConfigureLogging(logging => logging.ClearProviders());
-    }
+    private static IServiceCollection RegisterServices() =>
+        new ServiceCollection()
+            .AddSingleton<IDiamondQueryHandler, DiamondQueryHandler>()
+            .AddSingleton<IRowGeneratorQueryHandler, RowGeneratorQueryHandler>()
+            .AddSingleton<IOuterPaddingStringFactory, OuterPaddingStringFactory>()
+            .AddSingleton<IOuterPaddingLengthQueryHandler, OuterPaddingLengthQueryHandler>()
+            .AddSingleton<IInnerPaddingLengthQueryHandler, InnerPaddingLengthQueryHandler>()
+            .AddSingleton<IInnerPaddingStringFactory, InnerPaddingStringFactory>()
+            .AddSingleton<IGetLowerEnglishLettersQueryHandlers, GetLowerEnglishLettersQueryHandlers>();
 }

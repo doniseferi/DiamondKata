@@ -1,4 +1,4 @@
-﻿using DiamondKata.Domain.ValueType;
+﻿using DiamondKata.DomainService.ValueType;
 
 namespace DiamondKata.DomainService.QueryHandlers;
 

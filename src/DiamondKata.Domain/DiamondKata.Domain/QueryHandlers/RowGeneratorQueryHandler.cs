@@ -22,11 +22,10 @@ internal class RowGeneratorQueryHandler : IRowGeneratorQueryHandler
     public string Handle(RowQueryRequest request)
     {
         var outerPadding =
-            _outerPaddingStringFactory.Create(request.RequestChar, request.CurrentRowsChar,
-                request.OuterPaddingChar);
+            _outerPaddingStringFactory.Create(request.RequestChar, request.CurrentRowsChar);
 
         var innerPadding =
-            _innerPaddingStringFactory.Create(request.CurrentRowsChar, request.InnerPaddingChar);
+            _innerPaddingStringFactory.Create(request.CurrentRowsChar);
 
         var currentChar = request.CurrentRowsChar;
 

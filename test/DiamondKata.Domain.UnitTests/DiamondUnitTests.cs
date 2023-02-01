@@ -1,9 +1,7 @@
-using DiamondKata.Domain.ValueType;
 using DiamondKata.DomainService.Factories;
-using OuterPaddingChar = DiamondKata.Domain.ValueType.PaddingChar;
-using InnerPaddingChar = DiamondKata.Domain.ValueType.PaddingChar;
 using DiamondKata.DomainService.QueryHandlers;
 using DiamondKata.DomainService.Requests;
+using DiamondKata.DomainService.ValueType;
 
 namespace DiamondKata.Domain.UnitTests;
 
@@ -18,7 +16,7 @@ public class DiamondUnitTests
         new GetLowerEnglishLettersQueryHandlers());
 
     private DiamondRequest GetTestRequest() =>
-        new(new EnglishChar('Z'), new OuterPaddingChar(' '), new InnerPaddingChar('-'));
+        new(new EnglishChar('Z'));
 
 
     [Test]
@@ -30,14 +28,14 @@ public class DiamondUnitTests
             .Split(Environment.NewLine)
             .ToList();
 
-        var innerPadding = testRequest.InnerPaddingChar;
+        var innerPadding = '-';
 
         Assert.That(
             lines.First(),
-            Does.Not.Contain(innerPadding.Value));
+            Does.Not.Contain(innerPadding));
 
         Assert.That(lines.Last(),
-            Does.Not.Contain(innerPadding.Value));
+            Does.Not.Contain(innerPadding));
     }
 
     [Test]

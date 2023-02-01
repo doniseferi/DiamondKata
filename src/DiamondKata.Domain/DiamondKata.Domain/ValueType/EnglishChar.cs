@@ -1,12 +1,12 @@
-﻿using DiamondKata.Domain.Exception;
-using LanguageExt;
+﻿using System.Runtime.CompilerServices;
 using System.Text;
-using System.Runtime.CompilerServices;
+using DiamondKata.Domain.Exception;
+using LanguageExt;
 
 [assembly: InternalsVisibleTo("DiamondKata.Domain.UnitTests"),
            InternalsVisibleTo("DiamondKata.Console")]
 
-namespace DiamondKata.Domain.ValueType;
+namespace DiamondKata.DomainService.ValueType;
 
 internal sealed class EnglishChar : NewType<EnglishChar, char>
 {

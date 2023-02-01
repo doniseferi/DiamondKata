@@ -1,11 +1,12 @@
 ﻿using System.Text;
-using DiamondKata.Domain.ValueType;
 using DiamondKata.DomainService.QueryHandlers;
+using DiamondKata.DomainService.ValueType;
 
 namespace DiamondKata.DomainService.Factories;
 
 internal class InnerPaddingStringFactory : IInnerPaddingStringFactory
 {
+    private const char InnerPaddingChar = '-';
     private readonly IInnerPaddingLengthQueryHandler _innerPaddingLengthQueryHandler;
 
     public InnerPaddingStringFactory(IInnerPaddingLengthQueryHandler innerPaddingLengthQueryHandler)
@@ -14,20 +15,17 @@ internal class InnerPaddingStringFactory : IInnerPaddingStringFactory
                                           throw new ArgumentNullException(nameof(innerPaddingLengthQueryHandler));
     }
 
-    public string Create(EnglishChar @char, PaddingChar innerPaddingChar)
+    public string Create(EnglishChar @char)
     {
         if (@char == null)
             throw new ArgumentNullException(nameof(@char));
-
-        if (innerPaddingChar == null)
-            throw new ArgumentNullException(nameof(innerPaddingChar));
 
         var sb = new StringBuilder();
 
         var innerPaddingCharLength = _innerPaddingLengthQueryHandler.Handle(@char);
 
         for (var i = 0; i < innerPaddingCharLength; i++)
-            sb.Append(innerPaddingChar.Value);
+            sb.Append(InnerPaddingChar);
 
         return sb.ToString();
     }

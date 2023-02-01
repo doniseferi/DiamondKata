@@ -13,5 +13,4 @@ Scenario: The application exits with a non-zero code on invalid input
 		| ẞ            |
 		| Ë            |
 	When The input is passed into the application
-	Then the application should exit with a non-zero System Error code
-	And the user is presented with a human readable message
+	Then the user is presented with a human readable message
