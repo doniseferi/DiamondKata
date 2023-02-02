@@ -1,23 +1,22 @@
-﻿using DiamondKata.DomainService.Factories;
+﻿using System.Text;
 using DiamondKata.DomainService.ValueType;
-using System.Text;
 
 namespace DiamondKata.DomainService.QueryHandlers;
 
 internal class RowGeneratorQueryHandler : IRowGeneratorQueryHandler
 {
-    private readonly IOuterPaddingQueryHandler _outerPaddingQueryHandler;
-    private readonly IInnnerPaddingQueryHandler _innnerPaddingQueryHandler;
     private const char FirstEnglishLetter = 'A';
+    private readonly IInnerPaddingQueryHandler _innerPaddingQueryHandler;
+    private readonly IOuterPaddingQueryHandler _outerPaddingQueryHandler;
 
 
     public RowGeneratorQueryHandler(IOuterPaddingQueryHandler outerPaddingQueryHandler,
-        IInnnerPaddingQueryHandler innnerPaddingQueryHandler)
+        IInnerPaddingQueryHandler innerPaddingQueryHandler)
     {
         _outerPaddingQueryHandler = outerPaddingQueryHandler ??
-                                     throw new ArgumentNullException(nameof(outerPaddingQueryHandler));
-        _innnerPaddingQueryHandler = innnerPaddingQueryHandler ??
-                                     throw new ArgumentNullException(nameof(innnerPaddingQueryHandler));
+                                    throw new ArgumentNullException(nameof(outerPaddingQueryHandler));
+        _innerPaddingQueryHandler = innerPaddingQueryHandler ??
+                                     throw new ArgumentNullException(nameof(innerPaddingQueryHandler));
     }
 
     public string Handle(EnglishChar @char, EnglishChar lastCharInDiamond)
@@ -26,7 +25,7 @@ internal class RowGeneratorQueryHandler : IRowGeneratorQueryHandler
             _outerPaddingQueryHandler.Handle(@char, lastCharInDiamond);
 
         var innerPadding =
-            _innnerPaddingQueryHandler.Handle(@char);
+            _innerPaddingQueryHandler.Handle(@char);
 
         var sb = new StringBuilder();
         sb.Append(outerPadding);

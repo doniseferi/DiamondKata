@@ -1,4 +1,3 @@
-using DiamondKata.DomainService.Factories;
 using DiamondKata.DomainService.QueryHandlers;
 using DiamondKata.DomainService.ValueType;
 
@@ -9,7 +8,7 @@ public class DiamondUnitTests
     private static IDiamondQueryHandler GetSystemUnderTest() => new DiamondQueryHandler(
         new RowGeneratorQueryHandler(
             new OuterPaddingQueryHandler(),
-            new InnnerPaddingQueryHandler()),
+            new InnerPaddingQueryHandler()),
         new GetLowerEnglishLettersQueryHandlers());
 
     private EnglishChar GetTestRequest() => new('Z');

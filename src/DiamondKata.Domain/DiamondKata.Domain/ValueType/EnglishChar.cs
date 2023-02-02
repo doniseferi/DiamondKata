@@ -1,6 +1,6 @@
-﻿using DiamondKata.Domain.Exception;
-using System.Runtime.CompilerServices;
+﻿using System.Runtime.CompilerServices;
 using System.Text;
+using DiamondKata.DomainService.Exception;
 
 [assembly: InternalsVisibleTo("DiamondKata.Domain.UnitTests"),
            InternalsVisibleTo("DiamondKata.Console")]
@@ -25,7 +25,7 @@ internal sealed class EnglishChar
     }
 
     public char Value { get; }
-    
+
     public int GetNumericalValue()
     {
         const int asciiValueForUpperCaseA = 65;

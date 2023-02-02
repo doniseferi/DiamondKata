@@ -1,12 +1,12 @@
-﻿using DiamondKata.DomainService.ValueType;
-using System.Text;
+﻿using System.Text;
+using DiamondKata.DomainService.ValueType;
 
 namespace DiamondKata.DomainService.QueryHandlers;
 
 internal class DiamondQueryHandler : IDiamondQueryHandler
 {
-    private readonly IRowGeneratorQueryHandler _rowGeneratorQueryHandler;
     private readonly IGetLowerEnglishLettersQueryHandlers _getLowerEnglishLettersQueryHandlers;
+    private readonly IRowGeneratorQueryHandler _rowGeneratorQueryHandler;
 
     public DiamondQueryHandler(IRowGeneratorQueryHandler rowGeneratorQueryHandler,
         IGetLowerEnglishLettersQueryHandlers getLowerEnglishLettersQueryHandlers)
@@ -43,8 +43,8 @@ internal class DiamondQueryHandler : IDiamondQueryHandler
             .ToString();
     }
 
-    private Dictionary<EnglishChar, string> GenerateOutputPerChar(EnglishChar @char, EnglishChar lastCharInDiamond)
-        => _getLowerEnglishLettersQueryHandlers
+    private Dictionary<EnglishChar, string> GenerateOutputPerChar(EnglishChar @char, EnglishChar lastCharInDiamond) =>
+        _getLowerEnglishLettersQueryHandlers
             .Handle(@char)
             .Select(currentChar => new
             {

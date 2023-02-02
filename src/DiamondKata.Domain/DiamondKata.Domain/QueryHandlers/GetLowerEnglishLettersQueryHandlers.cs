@@ -11,7 +11,7 @@ internal class GetLowerEnglishLettersQueryHandlers : IGetLowerEnglishLettersQuer
         if (@char == null)
             throw new ArgumentNullException(nameof(@char));
 
-        var englishLetterAccum = new List<EnglishChar>() { @char };
+        var englishLetterAccum = new List<EnglishChar> { @char };
 
         for (var i = @char.GetNumericalValue(); i > 0; i--)
         {

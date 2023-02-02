@@ -2,7 +2,7 @@
 
 namespace DiamondKata.DomainService.QueryHandlers;
 
-interface IRowGeneratorQueryHandler
+internal interface IRowGeneratorQueryHandler
 {
     string Handle(EnglishChar @char, EnglishChar lastCharInDiamond);
 }

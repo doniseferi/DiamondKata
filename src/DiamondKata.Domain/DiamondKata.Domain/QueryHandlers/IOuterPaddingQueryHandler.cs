@@ -1,6 +1,6 @@
 ﻿using DiamondKata.DomainService.ValueType;
 
-namespace DiamondKata.DomainService.Factories;
+namespace DiamondKata.DomainService.QueryHandlers;
 
 internal interface IOuterPaddingQueryHandler
 {

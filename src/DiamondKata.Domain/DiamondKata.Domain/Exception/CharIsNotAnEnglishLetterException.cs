@@ -1,11 +1,8 @@
-﻿
-namespace DiamondKata.Domain.Exception;
+﻿namespace DiamondKata.DomainService.Exception;
 
-using System;
-
-internal class CharIsNotAnEnglishLetterException : Exception
+internal class CharIsNotAnEnglishLetterException : System.Exception
 {
-    private static readonly Func<char, string> GenerateErrorMessage = (attemptedValue)
+    private static readonly Func<char, string> GenerateErrorMessage = attemptedValue
         => $"{attemptedValue} is not a English char. Please supply a single English char";
 
     public CharIsNotAnEnglishLetterException(char attemptedValue)

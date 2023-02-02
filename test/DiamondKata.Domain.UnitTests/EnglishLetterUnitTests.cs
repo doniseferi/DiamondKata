@@ -1,5 +1,5 @@
-using DiamondKata.Domain.Exception;
 using DiamondKata.Domain.UnitTests.Extensions;
+using DiamondKata.DomainService.Exception;
 using DiamondKata.DomainService.ValueType;
 
 namespace DiamondKata.Domain.UnitTests;
