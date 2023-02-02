@@ -16,7 +16,7 @@ internal class Program
         RegisterServices();
 
         await Parser.Default.ParseArguments<CommandLineOptions>(args)
-            .WithParsedAsync(async commandLineOptions =>
+            .WithParsedAsync(commandLineOptions =>
             {
                 if (!commandLineOptions.EnglishChar.IsAnEnglishLetter())
                 {
@@ -41,6 +41,8 @@ internal class Program
                         throw;
                     }
                 }
+
+                return Task.CompletedTask;
             });
     }
 
