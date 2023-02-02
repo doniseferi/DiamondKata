@@ -1,8 +1,8 @@
-﻿using DiamondKata.DomainService.Requests;
+﻿using DiamondKata.DomainService.ValueType;
 
 namespace DiamondKata.DomainService.QueryHandlers;
 
 internal interface IDiamondQueryHandler
 {
-    string Handle(DiamondRequest request);
+    string Handle(EnglishChar @char);
 }

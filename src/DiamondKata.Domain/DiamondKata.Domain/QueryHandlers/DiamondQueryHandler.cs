@@ -1,6 +1,5 @@
-﻿using System.Text;
-using DiamondKata.DomainService.Requests;
-using DiamondKata.DomainService.ValueType;
+﻿using DiamondKata.DomainService.ValueType;
+using System.Text;
 
 namespace DiamondKata.DomainService.QueryHandlers;
 
@@ -20,12 +19,12 @@ internal class DiamondQueryHandler : IDiamondQueryHandler
                                                    nameof(getLowerEnglishLettersQueryHandlers));
     }
 
-    public string Handle(DiamondRequest request)
+    public string Handle(EnglishChar @char)
     {
-        if (request == null)
-            throw new ArgumentNullException(nameof(request));
+        if (@char == null)
+            throw new ArgumentNullException(nameof(@char));
 
-        var rows = GenerateOutputPerChar(request);
+        var rows = GenerateOutputPerChar(@char, @char);
 
         return new StringBuilder()
             .Append(string
@@ -44,16 +43,14 @@ internal class DiamondQueryHandler : IDiamondQueryHandler
             .ToString();
     }
 
-    private Dictionary<EnglishChar, string> GenerateOutputPerChar(DiamondRequest request)
+    private Dictionary<EnglishChar, string> GenerateOutputPerChar(EnglishChar @char, EnglishChar lastCharInDiamond)
         => _getLowerEnglishLettersQueryHandlers
-            .Handle(request.RequestChar)
+            .Handle(@char)
             .Select(currentChar => new
             {
                 Key = currentChar,
                 Value = _rowGeneratorQueryHandler.Handle(
-                    new RowQueryRequest(
-                        request.RequestChar,
-                        currentChar))
+                    currentChar, lastCharInDiamond)
             })
             .ToDictionary(t => t.Key, t => t.Value);
 }

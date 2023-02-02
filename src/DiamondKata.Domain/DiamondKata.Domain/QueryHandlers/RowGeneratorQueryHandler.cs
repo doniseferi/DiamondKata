@@ -1,40 +1,39 @@
-﻿using System.Text;
-using DiamondKata.DomainService.Factories;
-using DiamondKata.DomainService.Requests;
+﻿using DiamondKata.DomainService.Factories;
+using DiamondKata.DomainService.ValueType;
+using System.Text;
 
 namespace DiamondKata.DomainService.QueryHandlers;
 
 internal class RowGeneratorQueryHandler : IRowGeneratorQueryHandler
 {
-    private readonly IOuterPaddingStringFactory _outerPaddingStringFactory;
-    private readonly IInnerPaddingStringFactory _innerPaddingStringFactory;
+    private readonly IOuterPaddingQueryHandler _outerPaddingQueryHandler;
+    private readonly IInnnerPaddingQueryHandler _innnerPaddingQueryHandler;
+    private const char FirstEnglishLetter = 'A';
 
 
-    public RowGeneratorQueryHandler(IOuterPaddingStringFactory outerPaddingStringFactory,
-        IInnerPaddingStringFactory innerPaddingStringFactory)
+    public RowGeneratorQueryHandler(IOuterPaddingQueryHandler outerPaddingQueryHandler,
+        IInnnerPaddingQueryHandler innnerPaddingQueryHandler)
     {
-        _outerPaddingStringFactory = outerPaddingStringFactory ??
-                                       throw new ArgumentNullException(nameof(outerPaddingStringFactory));
-        _innerPaddingStringFactory = innerPaddingStringFactory ??
-                                       throw new ArgumentNullException(nameof(innerPaddingStringFactory));
+        _outerPaddingQueryHandler = outerPaddingQueryHandler ??
+                                     throw new ArgumentNullException(nameof(outerPaddingQueryHandler));
+        _innnerPaddingQueryHandler = innnerPaddingQueryHandler ??
+                                     throw new ArgumentNullException(nameof(innnerPaddingQueryHandler));
     }
 
-    public string Handle(RowQueryRequest request)
+    public string Handle(EnglishChar @char, EnglishChar lastCharInDiamond)
     {
         var outerPadding =
-            _outerPaddingStringFactory.Create(request.RequestChar, request.CurrentRowsChar);
+            _outerPaddingQueryHandler.Handle(@char, lastCharInDiamond);
 
         var innerPadding =
-            _innerPaddingStringFactory.Create(request.CurrentRowsChar);
-
-        var currentChar = request.CurrentRowsChar;
+            _innnerPaddingQueryHandler.Handle(@char);
 
         var sb = new StringBuilder();
         sb.Append(outerPadding);
-        sb.Append(currentChar.Value);
+        sb.Append(@char.Value);
         sb.Append(innerPadding);
-        return currentChar.Value == char.ToUpperInvariant('A')
+        return @char.Value == char.ToUpperInvariant(FirstEnglishLetter)
             ? sb.Append(outerPadding).ToString()
-            : sb.Append(currentChar.Value).Append(outerPadding).ToString();
+            : sb.Append(@char.Value).Append(outerPadding).ToString();
     }
 }

@@ -1,6 +1,6 @@
-﻿using System.Diagnostics;
+﻿using DiamondKata.EndToEndTests.Records;
+using System.Diagnostics;
 using System.Text;
-using DiamondKata.EndToEndTests.Records;
 
 namespace DiamondKata.EndToEndTests.TestHandler;
 

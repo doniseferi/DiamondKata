@@ -1,6 +1,6 @@
-﻿using System.Runtime.CompilerServices;
+﻿using DiamondKata.Domain.Exception;
+using System.Runtime.CompilerServices;
 using System.Text;
-using DiamondKata.Domain.Exception;
 
 [assembly: InternalsVisibleTo("DiamondKata.Domain.UnitTests"),
            InternalsVisibleTo("DiamondKata.Console")]
@@ -11,12 +11,11 @@ internal sealed class EnglishChar
 {
     public EnglishChar(char value)
     {
-
         bool IsAnEnglishLetter(char c) =>
             Enumerable.Range('A', 26)
-                .Select(x => (char) x)
+                .Select(x => (char)x)
                 .Contains(c);
-        
+
         var @char = char.ToUpperInvariant(value);
 
         if (!IsAnEnglishLetter(@char))
@@ -26,12 +25,12 @@ internal sealed class EnglishChar
     }
 
     public char Value { get; }
-
+    
     public int GetNumericalValue()
     {
         const int asciiValueForUpperCaseA = 65;
         return GetAsciiValue() - asciiValueForUpperCaseA;
     }
 
-    private int GetAsciiValue() => Convert.ToInt32(Encoding.ASCII.GetBytes(new[] {Value})[0]);
+    private int GetAsciiValue() => Convert.ToInt32(Encoding.ASCII.GetBytes(new[] { Value })[0]);
 }

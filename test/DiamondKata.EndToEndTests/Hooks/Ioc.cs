@@ -1,6 +1,6 @@
 ﻿using BoDi;
-using DiamondKata.EndToEndTests.TestHandler;
 using DiamondKata.EndToEndTests.Extensions;
+using DiamondKata.EndToEndTests.TestHandler;
 using TechTalk.SpecFlow;
 
 namespace DiamondKata.EndToEndTests.Hooks;

@@ -16,13 +16,13 @@ public class EnglishLetterUnitTests
     [Test]
     public void ThrowsAnExceptionWhenANonEnglishCharIsSupplied()
     {
-        
+
         var chars = CharExtensions.GetAllAsciiChars().Except(CharExtensions.GetAllEnglishChars())
             .ToList();
 
-            chars
-            .ForEach(c =>
-                Assert.Throws<CharIsNotAnEnglishLetterException>(
-                    () => new EnglishChar(c)));
+        chars
+        .ForEach(c =>
+            Assert.Throws<CharIsNotAnEnglishLetterException>(
+                () => new EnglishChar(c)));
     }
 }

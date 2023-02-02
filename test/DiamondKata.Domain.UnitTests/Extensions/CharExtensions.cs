@@ -7,6 +7,6 @@ internal class CharExtensions
             .ToList();
 
     public static IReadOnlyCollection<char> GetAllAsciiChars() =>
-        Enumerable.Range('\x1', 127).Select(x => (char) x)
+        Enumerable.Range('\x1', 127).Select(x => (char)x)
             .ToList();
 }

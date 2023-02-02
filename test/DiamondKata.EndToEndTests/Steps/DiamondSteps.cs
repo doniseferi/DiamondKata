@@ -26,7 +26,7 @@ class DiamondSteps
     [When(@"I provide a valid english character to the console")]
     public async Task WhenIProvideAValidEnglishCharacterToTheConsole()
     {
-        _resultFromConsole = await GetApplicationResponseAsync(new[] {"f"});
+        _resultFromConsole = await GetApplicationResponseAsync(new[] { "f" });
     }
 
     [Then(@"a correctly formatted diamond is printed")]
@@ -53,7 +53,7 @@ F---------F
         (await Task.WhenAll(
             _inputChars
                 .Select(async c =>
-                    await GetApplicationResponseAsync(new[] {c.ToString()}))))
+                    await GetApplicationResponseAsync(new[] { c.ToString() }))))
         .ToList();
 
 

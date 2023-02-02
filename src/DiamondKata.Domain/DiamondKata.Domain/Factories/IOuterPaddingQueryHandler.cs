@@ -1,8 +1,8 @@
 ﻿using DiamondKata.DomainService.ValueType;
 
-namespace DiamondKata.DomainService.QueryHandlers;
+namespace DiamondKata.DomainService.Factories;
 
-interface IRowGeneratorQueryHandler
+internal interface IOuterPaddingQueryHandler
 {
     string Handle(EnglishChar @char, EnglishChar lastCharInDiamond);
 }

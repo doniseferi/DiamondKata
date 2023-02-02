@@ -2,7 +2,7 @@
 
 namespace DiamondKata.DomainService.Factories;
 
-internal interface IInnerPaddingStringFactory
+internal interface IInnnerPaddingQueryHandler
 {
-    string Create(EnglishChar @char);
+    string Handle(EnglishChar @char);
 }

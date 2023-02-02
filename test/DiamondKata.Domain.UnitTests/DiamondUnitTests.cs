@@ -1,23 +1,18 @@
 using DiamondKata.DomainService.Factories;
 using DiamondKata.DomainService.QueryHandlers;
-using DiamondKata.DomainService.Requests;
 using DiamondKata.DomainService.ValueType;
 
 namespace DiamondKata.Domain.UnitTests;
 
 public class DiamondUnitTests
 {
-    private IDiamondQueryHandler GetSystemUnderTest() => new DiamondQueryHandler(
+    private static IDiamondQueryHandler GetSystemUnderTest() => new DiamondQueryHandler(
         new RowGeneratorQueryHandler(
-            new OuterPaddingStringFactory(
-                new OuterPaddingLengthQueryHandler()),
-            new InnerPaddingStringFactory(
-                new InnerPaddingLengthQueryHandler())),
+            new OuterPaddingQueryHandler(),
+            new InnnerPaddingQueryHandler()),
         new GetLowerEnglishLettersQueryHandlers());
 
-    private DiamondRequest GetTestRequest() =>
-        new(new EnglishChar('Z'));
-
+    private EnglishChar GetTestRequest() => new('Z');
 
     [Test]
     public void FirstAndLastEnglishLetterInTheDiamondHasNoInternalPadding()

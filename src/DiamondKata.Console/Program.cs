@@ -4,7 +4,6 @@ using CommandLine;
 using DiamondKata.Console.Extensions;
 using DiamondKata.DomainService.Factories;
 using DiamondKata.DomainService.QueryHandlers;
-using DiamondKata.DomainService.Requests;
 using DiamondKata.DomainService.ValueType;
 using Microsoft.Extensions.DependencyInjection;
 using static System.Console;
@@ -33,8 +32,7 @@ internal class Program
 
                     WriteLine(
                         diamondQueryHandler
-                            .Handle(new DiamondRequest(
-                                inputChar: new EnglishChar(commandLineOptions.EnglishChar))));
+                            .Handle(new EnglishChar(commandLineOptions.EnglishChar)));
                 }
             });
     }
@@ -43,9 +41,7 @@ internal class Program
         new ServiceCollection()
             .AddSingleton<IDiamondQueryHandler, DiamondQueryHandler>()
             .AddSingleton<IRowGeneratorQueryHandler, RowGeneratorQueryHandler>()
-            .AddSingleton<IOuterPaddingStringFactory, OuterPaddingStringFactory>()
-            .AddSingleton<IOuterPaddingLengthQueryHandler, OuterPaddingLengthQueryHandler>()
-            .AddSingleton<IInnerPaddingLengthQueryHandler, InnerPaddingLengthQueryHandler>()
-            .AddSingleton<IInnerPaddingStringFactory, InnerPaddingStringFactory>()
+            .AddSingleton<IOuterPaddingQueryHandler, OuterPaddingQueryHandler>()
+            .AddSingleton<IInnnerPaddingQueryHandler, InnnerPaddingQueryHandler>()
             .AddSingleton<IGetLowerEnglishLettersQueryHandlers, GetLowerEnglishLettersQueryHandlers>();
 }
