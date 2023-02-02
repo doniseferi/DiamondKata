@@ -20,14 +20,14 @@ internal class DiamondQueryHandler : IDiamondQueryHandler
 
         var rows = GetAllRows(@char);
 
-        var topToMiddleRows = string
+        var upperHalfOfDiamond = string
             .Join(
                 Environment.NewLine,
                 rows
                     .Select(x => x.Value)
                     .Reverse());
 
-        var middleToBottomRows = string
+        var lowerHalfOfDiamond = string
             .Join(
                 Environment.NewLine,
                 rows
@@ -35,9 +35,9 @@ internal class DiamondQueryHandler : IDiamondQueryHandler
                     .Select(x => x.Value));
 
         return new StringBuilder()
-            .Append(topToMiddleRows)
+            .Append(upperHalfOfDiamond)
             .Append(Environment.NewLine)
-            .Append(middleToBottomRows)
+            .Append(lowerHalfOfDiamond)
             .ToString();
     }
 
