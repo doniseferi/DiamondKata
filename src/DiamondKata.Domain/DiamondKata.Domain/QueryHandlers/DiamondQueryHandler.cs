@@ -41,7 +41,7 @@ internal class DiamondQueryHandler : IDiamondQueryHandler
             .ToString();
     }
 
-    public Dictionary<EnglishChar, string> GetAllRows(EnglishChar @char)
+    private Dictionary<EnglishChar, string> GetAllRows(EnglishChar @char)
     {
         const int asciiValueForUpperCaseA = 65;
 
