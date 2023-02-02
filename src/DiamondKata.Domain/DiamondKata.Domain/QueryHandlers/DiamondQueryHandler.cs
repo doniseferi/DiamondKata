@@ -24,7 +24,7 @@ internal class DiamondQueryHandler : IDiamondQueryHandler
         if (@char == null)
             throw new ArgumentNullException(nameof(@char));
 
-        var rows = GenerateOutputPerChar(@char, @char);
+        var rows = GenerateRowsForAllCharsEqualToAndLessThan(@char);
 
         return new StringBuilder()
             .Append(string
@@ -43,9 +43,9 @@ internal class DiamondQueryHandler : IDiamondQueryHandler
             .ToString();
     }
 
-    private Dictionary<EnglishChar, string> GenerateOutputPerChar(EnglishChar @char, EnglishChar lastCharInDiamond) =>
+    private Dictionary<EnglishChar, string> GenerateRowsForAllCharsEqualToAndLessThan(EnglishChar lastCharInDiamond) =>
         _getLowerEnglishLettersQueryHandlers
-            .Handle(@char)
+            .Handle(lastCharInDiamond)
             .Select(currentChar => new
             {
                 Key = currentChar,

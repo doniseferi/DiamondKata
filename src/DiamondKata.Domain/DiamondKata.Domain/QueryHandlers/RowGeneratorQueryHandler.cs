@@ -5,7 +5,6 @@ namespace DiamondKata.DomainService.QueryHandlers;
 
 internal class RowGeneratorQueryHandler : IRowGeneratorQueryHandler
 {
-    private const char FirstEnglishLetter = 'A';
     private readonly IInnerPaddingQueryHandler _innerPaddingQueryHandler;
     private readonly IOuterPaddingQueryHandler _outerPaddingQueryHandler;
 
@@ -16,7 +15,7 @@ internal class RowGeneratorQueryHandler : IRowGeneratorQueryHandler
         _outerPaddingQueryHandler = outerPaddingQueryHandler ??
                                     throw new ArgumentNullException(nameof(outerPaddingQueryHandler));
         _innerPaddingQueryHandler = innerPaddingQueryHandler ??
-                                     throw new ArgumentNullException(nameof(innerPaddingQueryHandler));
+                                    throw new ArgumentNullException(nameof(innerPaddingQueryHandler));
     }
 
     public string Handle(EnglishChar @char, EnglishChar lastCharInDiamond)
@@ -31,8 +30,16 @@ internal class RowGeneratorQueryHandler : IRowGeneratorQueryHandler
         sb.Append(outerPadding);
         sb.Append(@char.Value);
         sb.Append(innerPadding);
-        return @char.Value == char.ToUpperInvariant(FirstEnglishLetter)
+
+        return IsTheEnglishLetterCharA(@char)
             ? sb.Append(outerPadding).ToString()
             : sb.Append(@char.Value).Append(outerPadding).ToString();
+    }
+
+    private bool IsTheEnglishLetterCharA(EnglishChar @char)
+    {
+        const char firstEnglishLetter = 'A';
+
+        return char.ToUpperInvariant(@char.Value) == char.ToUpperInvariant(firstEnglishLetter);
     }
 }

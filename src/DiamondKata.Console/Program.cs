@@ -29,9 +29,17 @@ internal class Program
                             .BuildServiceProvider()
                             .GetService<IDiamondQueryHandler>();
 
-                    WriteLine(
-                        diamondQueryHandler
-                            .Handle(new EnglishChar(commandLineOptions.EnglishChar)));
+                    try
+                    {
+                        WriteLine(
+                            diamondQueryHandler
+                                .Handle(new EnglishChar(commandLineOptions.EnglishChar)));
+                    }
+                    catch (Exception e)
+                    {
+                        WriteLine(e.Message);
+                        throw;
+                    }
                 }
             });
     }

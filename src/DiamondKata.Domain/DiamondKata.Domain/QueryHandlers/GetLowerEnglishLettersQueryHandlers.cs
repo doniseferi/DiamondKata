@@ -11,20 +11,14 @@ internal class GetLowerEnglishLettersQueryHandlers : IGetLowerEnglishLettersQuer
         if (@char == null)
             throw new ArgumentNullException(nameof(@char));
 
-        var englishLetterAccum = new List<EnglishChar> { @char };
+        var englishLetterAccum = new List<EnglishChar>();
 
-        for (var i = @char.GetNumericalValue(); i > 0; i--)
+        for (var i = (int) @char.Value; i > AsciiValueForUpperCaseA - 1; i--)
         {
-            var previousEnglishChar = GetCharPriorTo(i);
+            var previousEnglishChar = new EnglishChar((char) i);
             englishLetterAccum.Add(previousEnglishChar);
         }
 
         return englishLetterAccum;
-    }
-
-    private static EnglishChar GetCharPriorTo(int currentCharsNumericalValue)
-    {
-        var previousCharsAsciiValue = AsciiValueForUpperCaseA + (currentCharsNumericalValue - 1);
-        return new EnglishChar((char)previousCharsAsciiValue);
     }
 }
