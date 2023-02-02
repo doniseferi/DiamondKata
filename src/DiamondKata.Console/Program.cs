@@ -49,6 +49,5 @@ internal class Program
             .AddSingleton<IDiamondQueryHandler, DiamondQueryHandler>()
             .AddSingleton<IRowGeneratorQueryHandler, RowGeneratorQueryHandler>()
             .AddSingleton<IOuterPaddingQueryHandler, OuterPaddingQueryHandler>()
-            .AddSingleton<IInnerPaddingQueryHandler, InnerPaddingQueryHandler>()
-            .AddSingleton<IGetLowerEnglishLettersQueryHandlers, GetLowerEnglishLettersQueryHandlers>();
+            .AddSingleton<IInnerPaddingQueryHandler, InnerPaddingQueryHandler>();
 }

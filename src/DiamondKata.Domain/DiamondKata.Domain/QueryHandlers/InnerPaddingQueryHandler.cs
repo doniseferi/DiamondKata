@@ -19,11 +19,11 @@ internal class InnerPaddingQueryHandler : IInnerPaddingQueryHandler
         return sb.ToString();
     }
 
-    public int CalculateLength(EnglishChar @char)
+    private static int CalculateLength(EnglishChar @char)
     {
-        var charsNumericalValue = @char.GetNumericalValue();
+        var orderValue = @char.GetOrderInAlphabet();
 
-        var numberOfCharsNeededForInternalPadding = charsNumericalValue * 2 - 1;
+        var numberOfCharsNeededForInternalPadding = orderValue * 2 - 1;
 
         return numberOfCharsNeededForInternalPadding < 0
             ? 0

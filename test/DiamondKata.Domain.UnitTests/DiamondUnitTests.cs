@@ -6,10 +6,8 @@ namespace DiamondKata.Domain.UnitTests;
 public class DiamondUnitTests
 {
     private static IDiamondQueryHandler GetSystemUnderTest() => new DiamondQueryHandler(
-        new RowGeneratorQueryHandler(
-            new OuterPaddingQueryHandler(),
-            new InnerPaddingQueryHandler()),
-        new GetLowerEnglishLettersQueryHandlers());
+        new RowGeneratorQueryHandler(new OuterPaddingQueryHandler(),
+            new InnerPaddingQueryHandler()));
 
     private EnglishChar GetTestRequest() => new('Z');
 

@@ -27,8 +27,8 @@ internal class OuterPaddingQueryHandler : IOuterPaddingQueryHandler
 
     public int CalculateOuterPadding(EnglishChar @char, EnglishChar lastChar)
     {
-        var requestCharValue = lastChar.GetNumericalValue() * 2 + 1;
-        var charValue = @char.GetNumericalValue() * 2 + 1;
-        return (requestCharValue - charValue) / 2;
+        var lastCharsOrderValue = lastChar.GetOrderInAlphabet() * 2 + 1;
+        var charsOrderValue = @char.GetOrderInAlphabet() * 2 + 1;
+        return (lastCharsOrderValue - charsOrderValue) / 2;
     }
 }

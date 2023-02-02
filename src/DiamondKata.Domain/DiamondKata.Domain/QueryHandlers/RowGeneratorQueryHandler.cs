@@ -8,7 +8,6 @@ internal class RowGeneratorQueryHandler : IRowGeneratorQueryHandler
     private readonly IInnerPaddingQueryHandler _innerPaddingQueryHandler;
     private readonly IOuterPaddingQueryHandler _outerPaddingQueryHandler;
 
-
     public RowGeneratorQueryHandler(IOuterPaddingQueryHandler outerPaddingQueryHandler,
         IInnerPaddingQueryHandler innerPaddingQueryHandler)
     {
@@ -21,7 +20,7 @@ internal class RowGeneratorQueryHandler : IRowGeneratorQueryHandler
     public string Handle(EnglishChar @char, EnglishChar lastCharInDiamond)
     {
         var outerPadding =
-            _outerPaddingQueryHandler.Handle(@char, lastCharInDiamond);
+            _outerPaddingQueryHandler.Handle(@char: @char, lastCharInDiamond: lastCharInDiamond);
 
         var innerPadding =
             _innerPaddingQueryHandler.Handle(@char);

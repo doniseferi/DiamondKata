@@ -26,11 +26,9 @@ internal sealed class EnglishChar
 
     public char Value { get; }
 
-    public int GetNumericalValue()
+    public int GetOrderInAlphabet()
     {
         const int asciiValueForUpperCaseA = 65;
-        return GetAsciiValue() - asciiValueForUpperCaseA;
+        return Value - asciiValueForUpperCaseA;
     }
-
-    private int GetAsciiValue() => Convert.ToInt32(Encoding.ASCII.GetBytes(new[] { Value })[0]);
 }

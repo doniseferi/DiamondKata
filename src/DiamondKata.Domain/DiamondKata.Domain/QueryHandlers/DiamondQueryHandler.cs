@@ -5,18 +5,12 @@ namespace DiamondKata.DomainService.QueryHandlers;
 
 internal class DiamondQueryHandler : IDiamondQueryHandler
 {
-    private readonly IGetLowerEnglishLettersQueryHandlers _getLowerEnglishLettersQueryHandlers;
     private readonly IRowGeneratorQueryHandler _rowGeneratorQueryHandler;
 
-    public DiamondQueryHandler(IRowGeneratorQueryHandler rowGeneratorQueryHandler,
-        IGetLowerEnglishLettersQueryHandlers getLowerEnglishLettersQueryHandlers)
+    public DiamondQueryHandler(IRowGeneratorQueryHandler rowGeneratorQueryHandler)
     {
         _rowGeneratorQueryHandler = rowGeneratorQueryHandler ??
                                     throw new ArgumentNullException(nameof(rowGeneratorQueryHandler));
-
-        _getLowerEnglishLettersQueryHandlers = getLowerEnglishLettersQueryHandlers ??
-                                               throw new ArgumentNullException(
-                                                   nameof(getLowerEnglishLettersQueryHandlers));
     }
 
     public string Handle(EnglishChar @char)
@@ -24,7 +18,7 @@ internal class DiamondQueryHandler : IDiamondQueryHandler
         if (@char == null)
             throw new ArgumentNullException(nameof(@char));
 
-        var rows = GenerateRowsForAllCharsEqualToAndLessThan(@char);
+        var rows = GetAllRows(@char);
 
         return new StringBuilder()
             .Append(string
@@ -43,14 +37,19 @@ internal class DiamondQueryHandler : IDiamondQueryHandler
             .ToString();
     }
 
-    private Dictionary<EnglishChar, string> GenerateRowsForAllCharsEqualToAndLessThan(EnglishChar lastCharInDiamond) =>
-        _getLowerEnglishLettersQueryHandlers
-            .Handle(lastCharInDiamond)
-            .Select(currentChar => new
-            {
-                Key = currentChar,
-                Value = _rowGeneratorQueryHandler.Handle(
-                    currentChar, lastCharInDiamond)
-            })
-            .ToDictionary(t => t.Key, t => t.Value);
+    public Dictionary<EnglishChar, string> GetAllRows(EnglishChar @char)
+    {
+        const int asciiValueForUpperCaseA = 65;
+
+        var rows = new Dictionary<EnglishChar, string>();
+
+        for (var i = (int)@char.Value; i > asciiValueForUpperCaseA - 1; i--)
+        {
+            var englishChar = new EnglishChar((char)i);
+            var row = _rowGeneratorQueryHandler.Handle(englishChar, @char);
+            rows.Add(englishChar, row);
+        }
+
+        return rows;
+    }
 }
