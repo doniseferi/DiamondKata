@@ -19,23 +19,29 @@ internal class RowGeneratorQueryHandler : IRowGeneratorQueryHandler
 
     public string Handle(EnglishChar @char, EnglishChar lastCharInDiamond)
     {
+        if (@char == null)
+            throw new ArgumentNullException(nameof(@char));
+
+        if (lastCharInDiamond == null)
+            throw new ArgumentNullException(nameof(lastCharInDiamond));
+
         var outerPadding =
             _outerPaddingQueryHandler.Handle(@char: @char, lastCharInDiamond: lastCharInDiamond);
 
         var innerPadding =
             _innerPaddingQueryHandler.Handle(@char);
 
-        var sb = new StringBuilder();
-        sb.Append(outerPadding);
-        sb.Append(@char.Value);
-        sb.Append(innerPadding);
+        var resultBuilder = new StringBuilder();
+        resultBuilder.Append(outerPadding);
+        resultBuilder.Append(@char.Value);
+        resultBuilder.Append(innerPadding);
 
         return IsTheEnglishLetterCharA(@char)
-            ? sb.Append(outerPadding).ToString()
-            : sb.Append(@char.Value).Append(outerPadding).ToString();
+            ? resultBuilder.Append(outerPadding).ToString()
+            : resultBuilder.Append(@char.Value).Append(outerPadding).ToString();
     }
 
-    private bool IsTheEnglishLetterCharA(EnglishChar @char)
+    private static bool IsTheEnglishLetterCharA(EnglishChar @char)
     {
         const char firstEnglishLetter = 'A';
 

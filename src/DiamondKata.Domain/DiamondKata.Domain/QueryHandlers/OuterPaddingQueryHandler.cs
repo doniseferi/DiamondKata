@@ -12,23 +12,25 @@ internal class OuterPaddingQueryHandler : IOuterPaddingQueryHandler
         if (@char == null)
             throw new ArgumentNullException(nameof(@char));
 
-        if (@char == null)
-            throw new ArgumentNullException(nameof(@char));
+        if (lastCharInDiamond == null)
+            throw new ArgumentNullException(nameof(lastCharInDiamond));
 
-        var sb = new StringBuilder();
+        var resultBuilder = new StringBuilder();
 
         var outerPaddingCharLength = CalculateOuterPadding(@char, lastCharInDiamond);
 
         for (var i = 0; i < outerPaddingCharLength; i++)
-            sb.Append(OuterPaddingChar);
+            resultBuilder.Append(OuterPaddingChar);
 
-        return sb.ToString();
+        return resultBuilder.ToString();
     }
 
-    public int CalculateOuterPadding(EnglishChar @char, EnglishChar lastChar)
+    private static int CalculateOuterPadding(EnglishChar @char, EnglishChar lastChar)
     {
         var lastCharsOrderValue = lastChar.GetOrderInAlphabet() * 2 + 1;
+
         var charsOrderValue = @char.GetOrderInAlphabet() * 2 + 1;
+
         return (lastCharsOrderValue - charsOrderValue) / 2;
     }
 }

@@ -9,17 +9,17 @@ internal class InnerPaddingQueryHandler : IInnerPaddingQueryHandler
 
     public string Handle(EnglishChar @char)
     {
-        var sb = new StringBuilder();
+        var resultBuilder = new StringBuilder();
 
-        var innerPaddingCharLength = CalculateLength(@char);
+        var innerPaddingCharLength = GetInnerPaddingLength(@char);
 
         for (var i = 0; i < innerPaddingCharLength; i++)
-            sb.Append(InnerPaddingChar);
+            resultBuilder.Append(InnerPaddingChar);
 
-        return sb.ToString();
+        return resultBuilder.ToString();
     }
 
-    private static int CalculateLength(EnglishChar @char)
+    private static int GetInnerPaddingLength(EnglishChar @char)
     {
         var orderValue = @char.GetOrderInAlphabet();
 
