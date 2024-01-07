@@ -13,7 +13,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DiamondKata.DomainService",
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DiamondKata.Console", "src\DiamondKata.Console\DiamondKata.Console.csproj", "{92945427-FC84-410E-B0FA-23CB33E3C160}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DiamondKata.EndToEndTests", "test\DiamondKata.EndToEndTests\DiamondKata.EndToEndTests.csproj", "{CBFEA8DB-AD44-4888-8E8A-6DA133C32161}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DiamondKata.Console.EndToEndTests", "test\DiamondKata.EndToEndTests\DiamondKata.Console.EndToEndTests.csproj", "{CBFEA8DB-AD44-4888-8E8A-6DA133C32161}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

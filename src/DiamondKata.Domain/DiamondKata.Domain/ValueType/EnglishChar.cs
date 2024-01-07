@@ -1,5 +1,4 @@
 ﻿using System.Runtime.CompilerServices;
-using System.Text;
 using DiamondKata.DomainService.Exception;
 
 [assembly: InternalsVisibleTo("DiamondKata.Domain.UnitTests"),
