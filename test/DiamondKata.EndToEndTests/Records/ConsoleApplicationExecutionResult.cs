@@ -1,3 +1,3 @@
-﻿namespace DiamondKata.EndToEndTests.Records;
+﻿namespace DiamondKata.Console.EndToEndTests.Records;
 
 internal record ConsoleApplicationExecutionResult(int ResultCode, string ConsoleOutput);

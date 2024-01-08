@@ -1,4 +1,4 @@
-﻿namespace DiamondKata.EndToEndTests.Extensions;
+﻿namespace DiamondKata.Console.EndToEndTests.Extensions;
 
 internal static class PathExtensions
 {

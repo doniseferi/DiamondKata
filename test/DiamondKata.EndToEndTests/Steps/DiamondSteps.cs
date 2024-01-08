@@ -1,8 +1,8 @@
-﻿using DiamondKata.EndToEndTests.Records;
-using DiamondKata.EndToEndTests.TestHandler;
+﻿using DiamondKata.Console.EndToEndTests.Records;
+using DiamondKata.Console.EndToEndTests.TestHandler;
 using TechTalk.SpecFlow;
 
-namespace DiamondKata.EndToEndTests.Steps;
+namespace DiamondKata.Console.EndToEndTests.Steps;
 
 [Binding]
 class DiamondSteps

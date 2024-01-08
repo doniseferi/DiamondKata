@@ -1,9 +1,9 @@
 ﻿using BoDi;
-using DiamondKata.EndToEndTests.Extensions;
-using DiamondKata.EndToEndTests.TestHandler;
+using DiamondKata.Console.EndToEndTests.Extensions;
+using DiamondKata.Console.EndToEndTests.TestHandler;
 using TechTalk.SpecFlow;
 
-namespace DiamondKata.EndToEndTests.Hooks;
+namespace DiamondKata.Console.EndToEndTests.Hooks;
 
 [Binding]
 public class Ioc

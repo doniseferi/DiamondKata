@@ -1,8 +1,8 @@
-﻿using DiamondKata.EndToEndTests.Records;
+﻿using DiamondKata.Console.EndToEndTests.Records;
 using System.Diagnostics;
 using System.Text;
 
-namespace DiamondKata.EndToEndTests.TestHandler;
+namespace DiamondKata.Console.EndToEndTests.TestHandler;
 
 internal class SystemUnderTestExecutionHandler
 {
