@@ -2,7 +2,7 @@
 
 namespace DiamondKata.DomainService.QueryHandlers;
 
-internal interface IInnerPaddingQueryHandler
+internal interface IGetDiamondQueryHandler
 {
     string Handle(EnglishChar @char);
 }

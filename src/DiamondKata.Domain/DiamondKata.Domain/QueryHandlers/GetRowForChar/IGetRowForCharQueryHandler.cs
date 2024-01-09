@@ -1,8 +1,8 @@
 ﻿using DiamondKata.DomainService.ValueType;
 
-namespace DiamondKata.DomainService.QueryHandlers;
+namespace DiamondKata.DomainService.QueryHandlers.GetRowForChar;
 
-internal interface IRowGeneratorQueryHandler
+internal interface IGetRowForCharQueryHandler
 {
     string Handle(EnglishChar @char, EnglishChar lastCharInDiamond);
 }

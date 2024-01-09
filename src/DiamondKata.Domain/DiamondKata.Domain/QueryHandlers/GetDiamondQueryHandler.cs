@@ -1,12 +1,13 @@
 ﻿using System.Text;
+using DiamondKata.DomainService.QueryHandlers.GetRowForChar;
 using DiamondKata.DomainService.ValueType;
 
 namespace DiamondKata.DomainService.QueryHandlers;
 
-internal class GetDiamondQueryHandler(IRowGeneratorQueryHandler rowGeneratorQueryHandler) : IDiamondQueryHandler
+internal class GetDiamondQueryHandler(IGetRowForCharQueryHandler getRowForCharQueryHandler) : IGetDiamondQueryHandler
 {
-    private readonly IRowGeneratorQueryHandler _rowGeneratorQueryHandler =
-        rowGeneratorQueryHandler ?? throw new ArgumentNullException(nameof(rowGeneratorQueryHandler));
+    private readonly IGetRowForCharQueryHandler _getRowForCharQueryHandler =
+        getRowForCharQueryHandler ?? throw new ArgumentNullException(nameof(getRowForCharQueryHandler));
 
     public string Handle(EnglishChar @char)
     {
@@ -48,7 +49,7 @@ internal class GetDiamondQueryHandler(IRowGeneratorQueryHandler rowGeneratorQuer
         for (var i = (int)@char.Value; i > asciiValueForUpperCaseA - 1; i--)
         {
             var englishChar = new EnglishChar((char)i);
-            var row = _rowGeneratorQueryHandler.Handle(englishChar, @char);
+            var row = _getRowForCharQueryHandler.Handle(englishChar, @char);
             rows.Add(englishChar, row);
         }
 

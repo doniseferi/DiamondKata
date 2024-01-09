@@ -1,5 +1,7 @@
 using DiamondKata.Domain.UnitTests.Extensions;
 using DiamondKata.DomainService.QueryHandlers;
+using DiamondKata.DomainService.QueryHandlers.GetPadding;
+using DiamondKata.DomainService.QueryHandlers.GetRowForChar;
 using NUnit.Framework.Legacy;
 
 namespace DiamondKata.Domain.UnitTests;
@@ -225,7 +227,7 @@ public class DiamondUnitTests
             Assert.That(bottomHalf, Is.Ordered.Descending);
         });
 
-    private static IDiamondQueryHandler GetSystemUnderTest() => new GetDiamondQueryHandler(
-        new RowGeneratorQueryHandler(new OuterPaddingQueryHandler(),
-            new InnerPaddingQueryHandler()));
+    private static IGetDiamondQueryHandler GetSystemUnderTest() => new GetDiamondQueryHandler(
+        new GetRowForCharQueryHandler(new GetOuterPaddingQueryHandler(),
+            new GetInnerPaddingQueryHandler()));
 }

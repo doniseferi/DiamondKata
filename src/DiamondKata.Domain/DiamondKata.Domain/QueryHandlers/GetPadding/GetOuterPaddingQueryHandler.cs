@@ -1,9 +1,9 @@
 ﻿using System.Text;
 using DiamondKata.DomainService.ValueType;
 
-namespace DiamondKata.DomainService.QueryHandlers;
+namespace DiamondKata.DomainService.QueryHandlers.GetPadding;
 
-internal class OuterPaddingQueryHandler : IOuterPaddingQueryHandler
+internal class GetOuterPaddingQueryHandler : IGetOuterPaddingQueryHandler
 {
     private const char OuterPaddingChar = ' ';
 

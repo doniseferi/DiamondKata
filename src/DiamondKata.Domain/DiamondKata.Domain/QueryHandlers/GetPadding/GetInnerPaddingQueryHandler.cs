@@ -1,9 +1,9 @@
 ﻿using System.Text;
 using DiamondKata.DomainService.ValueType;
 
-namespace DiamondKata.DomainService.QueryHandlers;
+namespace DiamondKata.DomainService.QueryHandlers.GetPadding;
 
-internal class InnerPaddingQueryHandler : IInnerPaddingQueryHandler
+internal class GetInnerPaddingQueryHandler : IGetInnerPaddingQueryHandler
 {
     private const char InnerPaddingChar = '-';
 
@@ -25,8 +25,6 @@ internal class InnerPaddingQueryHandler : IInnerPaddingQueryHandler
 
         var numberOfCharsNeededForInternalPadding = orderValue * 2 - 1;
 
-        return numberOfCharsNeededForInternalPadding < 0
-            ? 0
-            : numberOfCharsNeededForInternalPadding;
+        return numberOfCharsNeededForInternalPadding;
     }
 }

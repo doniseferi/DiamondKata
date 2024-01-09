@@ -3,6 +3,8 @@
 using CommandLine;
 using DiamondKata.Console.Extensions;
 using DiamondKata.DomainService.QueryHandlers;
+using DiamondKata.DomainService.QueryHandlers.GetPadding;
+using DiamondKata.DomainService.QueryHandlers.GetRowForChar;
 using DiamondKata.DomainService.ValueType;
 using Microsoft.Extensions.DependencyInjection;
 using static System.Console;
@@ -27,7 +29,7 @@ internal class Program
                     var diamondQueryHandler =
                         RegisterServices()
                             .BuildServiceProvider()
-                            .GetService<IDiamondQueryHandler>();
+                            .GetService<IGetDiamondQueryHandler>();
 
                     try
                     {
@@ -48,8 +50,8 @@ internal class Program
 
     private static IServiceCollection RegisterServices() =>
         new ServiceCollection()
-            .AddSingleton<IDiamondQueryHandler, GetDiamondQueryHandler>()
-            .AddSingleton<IRowGeneratorQueryHandler, RowGeneratorQueryHandler>()
-            .AddSingleton<IOuterPaddingQueryHandler, OuterPaddingQueryHandler>()
-            .AddSingleton<IInnerPaddingQueryHandler, InnerPaddingQueryHandler>();
+            .AddSingleton<IGetDiamondQueryHandler, GetDiamondQueryHandler>()
+            .AddSingleton<IGetRowForCharQueryHandler, GetRowForCharQueryHandler>()
+            .AddSingleton<IGetOuterPaddingQueryHandler, GetOuterPaddingQueryHandler>()
+            .AddSingleton<IGetInnerPaddingQueryHandler, GetInnerPaddingQueryHandler>();
 }
