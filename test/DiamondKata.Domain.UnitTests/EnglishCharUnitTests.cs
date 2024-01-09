@@ -4,7 +4,7 @@ using DiamondKata.DomainService.ValueType;
 
 namespace DiamondKata.Domain.UnitTests;
 
-public class EnglishLetterUnitTests
+public class EnglishCharUnitTests
 {
     [Test]
     public void DoesNotThrowAnExceptionWhenAnAlphabeticalCharIsSupplied() =>

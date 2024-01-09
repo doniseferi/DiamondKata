@@ -1,5 +1,6 @@
+using DiamondKata.Domain.UnitTests.Extensions;
 using DiamondKata.DomainService.QueryHandlers;
-using DiamondKata.DomainService.ValueType;
+using NUnit.Framework.Legacy;
 
 namespace DiamondKata.Domain.UnitTests;
 
@@ -7,7 +8,7 @@ public class DiamondUnitTests
 {
     [Test]
     public void DiamondHas2NMinus1NumberOfAscendingColumns() =>
-        GetEnglishCharacters()
+        EnglishCharExtensions.GetAllEnglishCharacters()
         .ToList()
         .ForEach(englishChar =>
         {
@@ -32,7 +33,7 @@ public class DiamondUnitTests
 
     [Test]
     public void DiamondHas2NMinus1NumberOfDescendingColumns() =>
-        GetEnglishCharacters()
+        EnglishCharExtensions.GetAllEnglishCharacters()
         .ToList()
         .ForEach(englishLetter =>
         {
@@ -56,7 +57,7 @@ public class DiamondUnitTests
 
     [Test]
     public void FirstAndLastEnglishLetterInTheDiamondHasNoInternalPadding() =>
-        GetEnglishCharacters()
+        EnglishCharExtensions.GetAllEnglishCharacters()
         .ToList()
         .ForEach(englishLetter =>
         {
@@ -76,7 +77,7 @@ public class DiamondUnitTests
 
     [Test]
     public void FirstAndLastEnglishLetterInTheDiamondAreTheSame() =>
-        GetEnglishCharactersExceptA()
+        EnglishCharExtensions.GetAllEnglishCharactersExceptA()
         .ToList()
         .ForEach(testChar =>
         {
@@ -89,7 +90,7 @@ public class DiamondUnitTests
 
     [Test]
     public void LeftAndRightSideExternalPaddingsAreEqualInLength() =>
-        GetEnglishCharactersExceptA()
+        EnglishCharExtensions.GetAllEnglishCharactersExceptA()
         .ToList()
         .ForEach(englishChar =>
         {
@@ -102,8 +103,7 @@ public class DiamondUnitTests
 
     [Test]
     public void HeightIsEqualToWidth() =>
-        GetEnglishCharactersExceptA()
-        .ToList()
+        EnglishCharExtensions.GetAllEnglishCharactersExceptA().ToList()
         .ForEach(englishChar =>
         {
             var diamond = GetSystemUnderTest()
@@ -121,8 +121,7 @@ public class DiamondUnitTests
 
     [Test]
     public void EachLineHasTheSameNumberOfCharacters() =>
-       GetEnglishCharactersExceptA()
-        .ToList()
+        EnglishCharExtensions.GetAllEnglishCharactersExceptA().ToList()
         .ForEach(englishChar =>
         {
             var diamond = GetSystemUnderTest()
@@ -140,8 +139,7 @@ public class DiamondUnitTests
 
     [Test]
     public void DiamondsAreVerticallySymmetrical() =>
-        GetEnglishCharactersExceptA()
-        .ToList()
+        EnglishCharExtensions.GetAllEnglishCharactersExceptA().ToList()
         .ForEach(englishChar =>
         {
             var diamond = GetSystemUnderTest()
@@ -161,8 +159,7 @@ public class DiamondUnitTests
 
     [Test]
     public void DiamondsAreHorizontallySymmetrical() =>
-        GetEnglishCharactersExceptA()
-        .ToList()
+        EnglishCharExtensions.GetAllEnglishCharactersExceptA().ToList()
         .ForEach(englishChar =>
         {
             var diamond = GetSystemUnderTest()
@@ -175,8 +172,8 @@ public class DiamondUnitTests
             lines.ForEach(line =>
             {
                 var midPoint = line.Length / 2;
-                var leftHalf = line.Substring(0, midPoint + 1);
-                var rightHalf = line.Substring(midPoint);
+                var leftHalf = line[..(midPoint + 1)];
+                var rightHalf = line[midPoint..];
 
                 CollectionAssert.AreEqual(leftHalf, rightHalf.Reverse());
             });
@@ -184,8 +181,7 @@ public class DiamondUnitTests
 
     [Test]
     public void EnglishCharsAreInAscendingOrderFromTheTopHalfOfTheDiamond() =>
-        GetEnglishCharacters()
-        .ToList()
+        EnglishCharExtensions.GetAllEnglishCharactersExceptA().ToList()
         .ForEach(englishChar =>
         {
             var diamond = GetSystemUnderTest()
@@ -208,8 +204,7 @@ public class DiamondUnitTests
 
     [Test]
     public void EnglishCharsAreInDescendingOrderFromTheBottomHalfOfTheDiamond() =>
-        GetEnglishCharacters()
-        .ToList()
+        EnglishCharExtensions.GetAllEnglishCharactersExceptA().ToList()
         .ForEach(englishChar =>
         {
             var diamond = GetSystemUnderTest()
@@ -233,14 +228,4 @@ public class DiamondUnitTests
     private static IDiamondQueryHandler GetSystemUnderTest() => new DiamondQueryHandler(
         new RowGeneratorQueryHandler(new OuterPaddingQueryHandler(),
             new InnerPaddingQueryHandler()));
-
-    private static IReadOnlyCollection<EnglishChar> GetEnglishCharacters() => Enumerable.Range('A', 26)
-        .Select(x => (char)x)
-        .Select(x => new EnglishChar(x))
-        .ToList();
-
-    private static IReadOnlyCollection<EnglishChar> GetEnglishCharactersExceptA() =>
-        GetEnglishCharacters()
-        .Skip(1)
-        .ToList();
 }
