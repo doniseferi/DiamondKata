@@ -21,7 +21,7 @@ internal class GetDiamondQueryHandler(IGetRowForCharQueryHandler getRowForCharQu
 
         return new StringBuilder()
             .Append(topHalfOfDiamond)
-            .Append(Environment.NewLine)
+            .AppendLine()
             .Append(lowerHalfOfDiamond)
             .ToString();
 

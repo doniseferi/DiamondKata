@@ -1,8 +1,10 @@
 using System.Net;
+using System.Text.RegularExpressions;
 using DiamondKata.DomainService.QueryHandlers;
 using DiamondKata.DomainService.ValueType;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.Extensions.DependencyInjection;
+using Newtonsoft.Json;
 
 namespace DiamondKata.Api.IntegrationTests;
 
@@ -28,8 +30,8 @@ public class DiamondEndpointTests(WebApplicationFactory<Program> factory)
         var response = await _httpClient.GetAsync($"/diamond/{@char}");
         response.EnsureSuccessStatusCode();
 
-        var content = await response.Content.ReadAsStringAsync();
-
+        var content = JsonConvert.DeserializeObject<string>(
+            await response.Content.ReadAsStringAsync());
         var expectedPattern = _getDiamondQueryHandler.Handle(new EnglishChar(@char));
         Assert.Equal(expectedPattern, content);
     }

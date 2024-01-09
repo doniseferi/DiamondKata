@@ -1,6 +1,7 @@
 ﻿using DiamondKata.DomainService.QueryHandlers.GetPadding;
 using DiamondKata.DomainService.QueryHandlers.GetRowForChar;
 using DiamondKata.DomainService.QueryHandlers;
+using DiamondKata.Api.GetDiamondResultQueryHandler;
 
 namespace DiamondKata.Api.Extensions
 {
@@ -12,6 +13,9 @@ namespace DiamondKata.Api.Extensions
             services.AddSingleton<IGetRowForCharQueryHandler, GetRowForCharQueryHandler>();
             services.AddSingleton<IGetOuterPaddingQueryHandler, GetOuterPaddingQueryHandler>();
             services.AddSingleton<IGetInnerPaddingQueryHandler, GetInnerPaddingQueryHandler>();
+            services
+                .AddSingleton<IGetDiamondResultQueryHandler,
+                    GetDiamondResultQueryHandler.GetDiamondResultQueryHandler>();
             return services;
         }   
     }

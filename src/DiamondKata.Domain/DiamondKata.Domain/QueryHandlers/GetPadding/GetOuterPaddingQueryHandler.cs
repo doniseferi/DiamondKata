@@ -9,11 +9,8 @@ internal class GetOuterPaddingQueryHandler : IGetOuterPaddingQueryHandler
 
     public string Handle(EnglishChar @char, EnglishChar lastCharInDiamond)
     {
-        if (@char == null)
-            throw new ArgumentNullException(nameof(@char));
-
-        if (lastCharInDiamond == null)
-            throw new ArgumentNullException(nameof(lastCharInDiamond));
+        ArgumentNullException.ThrowIfNull(@char);
+        ArgumentNullException.ThrowIfNull(lastCharInDiamond);
 
         var resultBuilder = new StringBuilder();
 

@@ -7,9 +7,7 @@ public class EnglishCharValidationFilter : IEndpointFilter
         var @char = char.ToUpperInvariant(context.GetArgument<char>(0));
 
         if (!IsAnEnglishLetter(@char))
-        {
             return Results.BadRequest("Only english characters are allowed");
-        }
 
         return await next(context);
 

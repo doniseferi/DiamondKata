@@ -9,6 +9,8 @@ internal class GetInnerPaddingQueryHandler : IGetInnerPaddingQueryHandler
 
     public string Handle(EnglishChar @char)
     {
+        ArgumentNullException.ThrowIfNull(@char);
+
         var resultBuilder = new StringBuilder();
 
         var innerPaddingCharLength = GetInnerPaddingLength(@char);
