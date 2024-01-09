@@ -24,7 +24,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\DiamondKata.Api\DiamondKata.Api.csproj" />
+    <ProjectReference Include="..\..\src\DiamondKata.Api\DiamondKata.Api.csproj" />
   </ItemGroup>
 
 </Project>
