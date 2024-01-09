@@ -26,18 +26,18 @@ internal class GetDiamondQueryHandler(IGetRowForCharQueryHandler getRowForCharQu
             .ToString();
 
         string AppendTopHalfOfDiamond() => string
-                .Join(
-                    Environment.NewLine,
-                    rows
-                        .Select(x => x.Value)
-                        .Reverse());
+            .Join(
+                Environment.NewLine,
+                rows
+                    .Select(x => x.Value)
+                    .Reverse());
 
         string AppendBottomHalfOfDiamond() => string
-                .Join(
-                    Environment.NewLine,
-                    rows
-                        .Skip(1)
-                        .Select(x => x.Value));
+            .Join(
+                Environment.NewLine,
+                rows
+                    .Skip(1)
+                    .Select(x => x.Value));
     }
 
     private Dictionary<EnglishChar, string> GenerateDiamondRows(EnglishChar @char)

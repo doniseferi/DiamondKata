@@ -1,6 +1,9 @@
 using DiamondKata.Api;
+using DiamondKata.Api.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
+var services = builder.Services;
+services.AddGetDiamondQueryHandler();
 var app = builder.Build();
 
 app.MapGet("/diamond/{char}", GetDiamond)
