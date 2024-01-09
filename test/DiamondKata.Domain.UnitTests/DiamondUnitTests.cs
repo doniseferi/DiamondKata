@@ -225,7 +225,7 @@ public class DiamondUnitTests
             Assert.That(bottomHalf, Is.Ordered.Descending);
         });
 
-    private static IDiamondQueryHandler GetSystemUnderTest() => new DiamondQueryHandler(
+    private static IDiamondQueryHandler GetSystemUnderTest() => new GetDiamondQueryHandler(
         new RowGeneratorQueryHandler(new OuterPaddingQueryHandler(),
             new InnerPaddingQueryHandler()));
 }

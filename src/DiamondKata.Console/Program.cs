@@ -48,7 +48,7 @@ internal class Program
 
     private static IServiceCollection RegisterServices() =>
         new ServiceCollection()
-            .AddSingleton<IDiamondQueryHandler, DiamondQueryHandler>()
+            .AddSingleton<IDiamondQueryHandler, GetDiamondQueryHandler>()
             .AddSingleton<IRowGeneratorQueryHandler, RowGeneratorQueryHandler>()
             .AddSingleton<IOuterPaddingQueryHandler, OuterPaddingQueryHandler>()
             .AddSingleton<IInnerPaddingQueryHandler, InnerPaddingQueryHandler>();
